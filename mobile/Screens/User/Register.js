@@ -12,12 +12,16 @@ const Register = () => {
 
     const route = useNavigation();
 
+    const handleNext = (values) => {
+        route.navigate('PickImage', values)
+    }
+
     return (
         <Container>
             <Formik
                 validationSchema={RegisterValidation}
                 initialValues={{ name: '', email: '', password: '' }}
-                onSubmit={values => console.log(values)}
+                onSubmit={(values) => handleNext(values)}
             >
                 {({ handleBlur, handleSubmit, handleChange, values, errors }) => (
                     <View style={styles.form}>
