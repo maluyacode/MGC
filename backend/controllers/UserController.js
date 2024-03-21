@@ -29,7 +29,7 @@ exports.register = async (req, res, next) => {
     }
 }
 
-exports.login = async () => {
+exports.login = async (req, res, next) => {
 
     try {
 
@@ -54,7 +54,7 @@ exports.login = async () => {
 
         user = await User.findOne(user._id);
 
-        sendToken(user, 200, res)
+        sendToken(user, 200, res, 'Successfully Login')
 
     } catch (err) {
         return res.status(400).json({

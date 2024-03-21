@@ -2,11 +2,11 @@ import React, { useRef } from 'react'
 import { TextInput as TextField, StyleSheet, View, Text } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
 
-const TextInput = ({ style, errorText, ...props }) => {
+const TextInput = ({ style, errorText, touched, ...props }) => {
     const input = useRef();
     return (
         <>
-            <View style={[styles.containerText, style, errorText ? styles.errorColor : {}]} onPress={() => console.log("Asdad")}>
+            <View style={[styles.containerText, style, (errorText && touched) ? styles.errorColor : {}]} onPress={() => console.log("Asdad")}>
                 {props?.icon}
                 <TextField
                     ref={input}
@@ -17,7 +17,7 @@ const TextInput = ({ style, errorText, ...props }) => {
                     placeholder={props.placeholder}
                 />
             </View>
-            {errorText ? <Text style={styles.error}>{errorText}</Text> : null}
+            {(errorText && touched) ? <Text style={styles.error}>{errorText}</Text> : null}
         </>
     )
 }

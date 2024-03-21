@@ -2,27 +2,31 @@ import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button as RNButton } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Toast from 'react-native-toast-message';
-const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
+import { NativeBaseProvider, extendTheme } from 'native-base';
 
-import Login from './Screens/User/Login';
-import Home from './Screens/Home';
-import Button from './Shared/Form/Button';
-import Register from './Screens/User/Register';
-import TabNavigator from './Navigators/TabNavigator';
+import DrawerNavigator from './Navigators/DrawerNavigator';
 
+
+const theme = extendTheme({ colors: newColorTheme });
+const newColorTheme = {
+  brand: {
+    900: "#8287af",
+    800: "#7c83db",
+    700: "#b3bef6",
+  },
+};
 
 export default function App() {
   return (
     <>
       <NavigationContainer>
-        <StatusBar style='auto' />
-        <TabNavigator />
-
-        {/* <Stack.Navigator initialRouteName='Home' screenOptions={{
+        <NativeBaseProvider theme={theme}>
+          <StatusBar style='auto' />
+          {/* <Header /> */}
+          <DrawerNavigator />
+          {/* <TabNavigator /> */}
+          {/* <Stack.Navigator initialRouteName='Home' screenOptions={{
           headerShown: true,
         }}>
         <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
@@ -31,7 +35,8 @@ export default function App() {
         
       </Stack.Navigator> */}
 
-        <Toast />
+          <Toast />
+        </NativeBaseProvider>
       </NavigationContainer>
     </>
   );

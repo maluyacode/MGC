@@ -17,51 +17,56 @@ const Register = () => {
     }
 
     return (
-        <Container>
-            <Formik
-                validationSchema={RegisterValidation}
-                initialValues={{ name: '', email: '', password: '' }}
-                onSubmit={(values) => handleNext(values)}
-            >
-                {({ handleBlur, handleSubmit, handleChange, values, errors }) => (
-                    <View style={styles.form}>
-                        <Image style={styles.image} source={require('../../assets/mgc-logo.png')} />
-                        <Text style={styles.title}>Register</Text>
-                        <TextInput placeholder='Name' icon={<AntDesign name="user" size={20} color="#67729D" />}
-                            onChangeText={handleChange('name')}
-                            value={values.name}
-                            name='name'
-                            errorText={errors.name}
-                            textContentType='name'
-                        />
-                        <TextInput placeholder="Username/Email" icon={<Entypo name="email" size={20} color="#67729D" />}
-                            onChangeText={handleChange('email')}
-                            value={values.email}
-                            name='email'
-                            errorText={errors.email}
-                            textContentType='emailAddress'
-                        />
-                        <TextInput placeholder="Password" icon={<MaterialCommunityIcons name="onepassword" size={20} color="#67729D" />}
-                            onChangeText={handleChange('password')}
-                            name='password'
-                            value={values.password}
-                            secureTextEntry={true}
-                            errorText={errors.password}
-                            textContentType='password'
-                        />
-                        <Button onPress={handleSubmit} title='Next' style={{ marginTop: 15 }} />
-                        <View style={{ display: 'flex', flexDirection: 'row', marginTop: 5 }}>
-                            <Text>Already have and account? </Text>
-                            <TouchableOpacity onPress={() => {
-                                route.navigate('Login')
-                            }}>
-                                <Text style={styles.signUp}>Sign In</Text>
-                            </TouchableOpacity>
+        <>
+            <Container>
+                <Formik
+                    validationSchema={RegisterValidation}
+                    initialValues={{ name: '', email: '', password: '' }}
+                    onSubmit={(values) => handleNext(values)}
+                >
+                    {({ handleBlur, handleSubmit, handleChange, values, errors, touched }) => (
+                        <View style={styles.form}>
+                            <Image style={styles.image} source={require('../../assets/mgc-logo.png')} />
+                            {/* <Text style={styles.title}>Create your account!</Text> */}
+                            <TextInput placeholder='Name' icon={<AntDesign name="user" size={20} color="#67729D" />}
+                                onChangeText={handleChange('name')}
+                                value={values.name}
+                                name='name'
+                                errorText={errors.name}
+                                textContentType='name'
+                                touched={touched.name}
+                            />
+                            <TextInput placeholder="Username/Email" icon={<Entypo name="email" size={20} color="#67729D" />}
+                                onChangeText={handleChange('email')}
+                                value={values.email}
+                                name='email'
+                                errorText={errors.email}
+                                textContentType='emailAddress'
+                                touched={touched.email}
+                            />
+                            <TextInput placeholder="Password" icon={<MaterialCommunityIcons name="onepassword" size={20} color="#67729D" />}
+                                onChangeText={handleChange('password')}
+                                name='password'
+                                value={values.password}
+                                secureTextEntry={true}
+                                errorText={errors.password}
+                                textContentType='password'
+                                touched={touched.password}
+                            />
+                            <Button onPress={handleSubmit} title='Next' style={{ marginTop: 15 }} />
+                            <View style={{ display: 'flex', flexDirection: 'row', marginTop: 5 }}>
+                                <Text>Already have and account? </Text>
+                                <TouchableOpacity onPress={() => {
+                                    route.navigate('Login')
+                                }}>
+                                    <Text style={styles.signUp}>Sign In</Text>
+                                </TouchableOpacity>
+                            </View>
                         </View>
-                    </View>
-                )}
-            </Formik>
-        </Container>
+                    )}
+                </Formik>
+            </Container>
+        </>
     )
 }
 
@@ -75,18 +80,18 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         padding: 20,
-        marginTop: 50,
+        marginTop: 30,
     },
     title: {
         fontSize: 20,
         textAlign: 'center',
         fontWeight: '600',
         marginBottom: 20,
-        color: '#BB9CC0'
+        color: '#67729D'
     },
     image: {
         width: 320,
-        height: 150,
+        height: 175,
         marginHorizontal: 'auto'
     }
 })

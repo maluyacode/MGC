@@ -19,7 +19,7 @@ const WanderLoader = ({ loadingText }) => {
                 height: height
             }}>
                 <Chase size={48} color="#67729D" />
-                <Text style={{ color: '#67729D', fontWeight: '600', fontSize: 18, marginTop: 15 }}>{loadingText}</Text>
+                <Text style={{ color: '#67729D', fontWeight: '400', fontSize: 14, marginTop: 15 }}>{loadingText}</Text>
             </View>
         </Container>
     )

@@ -10,12 +10,7 @@ import Toast from 'react-native-toast-message';
 import WanderLoader from '../../Shared/Loader/WanderLoader';
 
 const PickImage = ({ route, navigation }) => {
-    const [loading, setLoading] = useState(false);
-    const [loadingText, setLoadingText] = useState('Loading');
-    const setLoader = (isEnable = false, text = 'Loading') => {
-        setLoadingText(text)
-        setLoading(isEnable)
-    }
+    const [loading, setLoading] = useState(false); const [loadingText, setLoadingText] = useState('Loading'); const setLoader = (isEnable = false, text = 'Loading') => { setLoadingText(text); setLoading(isEnable) }
 
     const userData = route.params;
 
@@ -72,7 +67,7 @@ const PickImage = ({ route, navigation }) => {
                         text1: "Your account was successfully created",
                         text2: "Please login into your account",
                     });
-                    
+
                     navigation.navigate("Login");
                 }
             })
