@@ -5,10 +5,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import Toast from 'react-native-toast-message';
 import { NativeBaseProvider, extendTheme } from 'native-base';
 
-import DrawerNavigator from './Navigators/DrawerNavigator';
-import { Provider } from 'react-redux';
+// import DrawerNavigator from './Navigators/DrawerNavigator';
+import { Provider, useSelector } from 'react-redux';
 import store from './Redux/store';
-
+// import TabNavigator from './Navigators/TabNavigator';
+import Main from './Main';
+import SyncStorage from 'sync-storage';
+import { useEffect } from 'react';
 
 const theme = extendTheme({ colors: newColorTheme });
 const newColorTheme = {
@@ -20,6 +23,16 @@ const newColorTheme = {
 };
 
 export default function App() {
+
+  const asyncStorage = async () => {
+    const data = await SyncStorage.init();
+    console.log('AsyncStorage is ready!', data);
+  }
+
+  useEffect(() => {
+    asyncStorage()
+  }, [])
+
   return (
     <>
       <NavigationContainer>
@@ -28,7 +41,7 @@ export default function App() {
 
             <StatusBar style='auto' />
 
-            <DrawerNavigator />
+            <Main />
 
             <Toast />
 
@@ -38,7 +51,6 @@ export default function App() {
     </>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

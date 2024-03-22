@@ -11,9 +11,9 @@ const Header = ({ navigation }) => {
     return (
         <Box safeArea style={styles.topView}>
             <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-                <Pressable onPress={() => navigation.toggleDrawer()}>
+                {/* <Pressable onPress={() => navigation.toggleDrawer()}>
                     <Ionicons name='menu' size={25} />
-                </Pressable>
+                </Pressable> */}
                 <Text style={styles.logoText}>MGC</Text>
             </View>
             <View style={{ display: 'flex', flexDirection: 'row', gap: 15 }}>

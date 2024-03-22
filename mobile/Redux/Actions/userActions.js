@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as userAction from '../Constants/userContstants'
 import baseURL from "../../assets/common/baseUrl";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import SyncStorage from "sync-storage";
 
 export const loginAction = (values) => async (dispatch) => {
     try {
@@ -12,9 +12,9 @@ export const loginAction = (values) => async (dispatch) => {
         })
 
         const { data } = await axios.post(`${baseURL}/users/login`, values);
-
-        await AsyncStorage.setItem("token", data.token);
-        await AsyncStorage.setItem("user", JSON.stringify(data.user))
+        console.log(data)
+        SyncStorage.set("token", data.token);
+        SyncStorage.set("user", JSON.stringify(data.user))
 
         dispatch({
             type: userAction.USER_LOGIN_SUCCESS,
@@ -43,9 +43,9 @@ export const logoutAction = () => async (dispatch) => {
             payload: 'Logging out'
         })
 
-        AsyncStorage.removeItem('user')
-        AsyncStorage.removeItem('token');
-        
+        SyncStorage.remove('user')
+        SyncStorage.remove('token');
+
         dispatch({
             type: userAction.USER_LOGOUT_SUCCESS,
             payload: 'Successfully logout'

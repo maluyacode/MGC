@@ -10,26 +10,13 @@ import { useFocusEffect } from '@react-navigation/native';
 import { getUser } from '../utils/user';
 import WanderLoader from '../Shared/Loader/WanderLoader';
 import { useSelector } from 'react-redux';
-
+import SyncStorage from 'sync-storage'
 const Stack = createStackNavigator();
 
 const UserNavigator = (props) => {
-    // const [loading, setLoading] = useState(true); const [loadingText, setLoadingText] = useState('Loading'); const setLoader = (isEnable = false, text = 'Loading') => { setLoadingText(text); setLoading(isEnable) }
 
-    // const [user, setUser] = useState();
-
-    const { loading, userInfo, loadingText } = useSelector(state => state.user);
-    // const getUserFromStorage = async () => {
-    //     const user = await getUser();
-    //     setUser(user);
-    // }
-
-    // useFocusEffect(
-    //     useCallback(() => {
-    //         getUserFromStorage();
-    //     }, [])
-    // )
-    console.log(userInfo)
+    const { loading, userInfo, loadingText, token } = useSelector(state => state.user);
+    // console.log(userInfo)
     return (
         <>
             {loading ? <WanderLoader loadingText={loadingText} /> :

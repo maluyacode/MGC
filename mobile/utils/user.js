@@ -1,23 +1,24 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import "core-js/stable/atob";
+import SyncStorage from "sync-storage";
+export const authenticate = (data) => {
 
-export const authenticate = async (data) => {
-
-    await AsyncStorage.setItem("token", data.token);
-    await AsyncStorage.setItem("user", JSON.stringify(data.user))
+    SyncStorage.set("token", data.token);
+    SyncStorage.set("user", JSON.stringify(data.user))
 
 }
 
 export const getUser = () => {
-    const user = AsyncStorage.getItem('user');
-    return user ? user : null
+    const user = SyncStorage.get('user');
+    console.log(user)
+    return user ? user : null;
 }
 
 export const getToken = () => {
-    const token = AsyncStorage.getItem('token');
+    const token = SyncStorage.get('token');
     return token ? token : null
 }
 
 export const logout = () => {
-    AsyncStorage.removeItem('user')
-    AsyncStorage.removeItem('token');
+    SyncStorage.remove('user')
+    SyncStorage.remove('token');
 }
