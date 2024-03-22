@@ -1,19 +1,18 @@
 import React from 'react'
 import Container from '../../Shared/Container'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Text } from 'react-native'
 
-const Profile = () => {
+const Profile = ({ navigation }) => {
+
     return (
-        <Container style={styles.container}>
+        <Container>
             <Text>Profile</Text>
         </Container>
     )
 }
 
 const styles = StyleSheet.create({
-    container: {
-        marginTop: 30
-    }
+
 })
 
 export default Profile

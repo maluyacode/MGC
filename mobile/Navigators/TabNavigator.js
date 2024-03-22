@@ -41,20 +41,6 @@ const TabNavigator = () => {
                     }}
                 />
 
-                <Tab.Screen
-                    name='Cart'
-                    component={Cart}
-                    options={{
-                        tabBarIcon: ({ color }) => {
-                            return <Icon
-                                name='shopping-cart'
-                                style={{ position: 'relative' }}
-                                color={color}
-                                size={25}
-                            />
-                        },
-                    }}
-                />
 
                 <Tab.Screen
                     name='Order'

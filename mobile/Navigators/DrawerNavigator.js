@@ -3,6 +3,7 @@ import * as React from "react";
 import {
     createDrawerNavigator,
     DrawerContentScrollView,
+    DrawerItemList,
 } from "@react-navigation/drawer";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import {
@@ -18,50 +19,37 @@ import {
     HStack,
     Divider,
     Icon,
+    View,
 } from "native-base";
 
 import TabNavigator from "./TabNavigator";
 import Header from "../Shared/Header";
+import { logout } from "../utils/user";
+import { useDispatch } from "react-redux";
+import { logoutAction } from "../Redux/Actions/userActions";
 global.__reanimatedWorkletInit = () => { };
+
 const Drawer = createDrawerNavigator();
 
-
-const getIcon = (screenName) => {
-    switch (screenName) {
-        case "Inbox":
-            return "email";
-        case "Outbox":
-            return "send";
-        case "Cart":
-            return "cart";
-        case "Product List":
-            return "archive";
-        case "Trash":
-            return "trash-can";
-        case "Spam":
-            return "alert-circle";
-        case "Home":
-            return "home"
-        default:
-            return undefined;
-    }
-};
-
 function CustomDrawerContent(props) {
+
+    const dispatch = useDispatch()
+
     return (
-        <DrawerContentScrollView {...props} safeArea>
-            <VStack space="6" my="2" mx="1">
-                <Box px="4">
-                    <Text bold color="gray.700">
-                        Mail
-                    </Text>
-                    <Text fontSize="14" mt="1" color="gray.500" fontWeight="500">
-                        john_doe@gmail.com
-                    </Text>
-                </Box>
-                <VStack divider={<Divider />} space="4">
-                    <VStack space="3">
-                        {props.state.routeNames.map((name, index) => (
+        <View style={{ flex: 1 }}>
+            <DrawerContentScrollView {...props} safeArea>
+                <VStack space="6" my="2" mx="1">
+                    <Box px="4">
+                        <Text bold color="gray.700">
+                            Dave Merc Adlawan
+                        </Text>
+                        <Text fontSize="14" mt="1" color="gray.500" fontWeight="500">
+                            john_doe@gmail.com
+                        </Text>
+                    </Box>
+                    <VStack divider={<Divider />} space="4">
+                        <VStack space="3">
+                            {/* {props.state.routeNames.map((name, index) => (
                             <Pressable
                                 key={index}
                                 px="5"
@@ -94,54 +82,64 @@ function CustomDrawerContent(props) {
                                     </Text>
                                 </HStack>
                             </Pressable>
-                        ))}
-                    </VStack>
-                    <VStack space="5">
-                        <Text fontWeight="500" fontSize="14" px="5" color="gray.500">
-                            Labels
-                        </Text>
-                        <VStack space="3">
-                            <Pressable px="5" py="3">
-                                <HStack space="7" alignItems="center">
-                                    <Icon
-                                        color="gray.500"
-                                        size="5"
-                                        as={<MaterialCommunityIcons name="bookmark" />}
-                                    />
-                                    <Text color="gray.700" fontWeight="500">
-                                        Family
-                                    </Text>
-                                </HStack>
-                            </Pressable>
-                            <Pressable px="5" py="2">
-                                <HStack space="7" alignItems="center">
-                                    <Icon
-                                        color="gray.500"
-                                        size="5"
-                                        as={<MaterialCommunityIcons name="bookmark" />}
-                                    />
-                                    <Text color="gray.700" fontWeight="500">
-                                        Friends
-                                    </Text>
-                                </HStack>
-                            </Pressable>
-                            <Pressable px="5" py="3">
-                                <HStack space="7" alignItems="center">
-                                    <Icon
-                                        color="gray.500"
-                                        size="5"
-                                        as={<MaterialCommunityIcons name="bookmark" />}
-                                    />
-                                    <Text fontWeight="500" color="gray.700">
-                                        Work
-                                    </Text>
-                                </HStack>
-                            </Pressable>
+                        ))} */}
+                            <DrawerItemList {...props} />
+                        </VStack>
+                        <VStack space="5">
+                            <Text fontWeight="500" fontSize="14" px="5" color="gray.500">
+                                Labels
+                            </Text>
+                            <VStack space="3">
+                                <Pressable px="5" py="3">
+                                    <HStack space="7" alignItems="center">
+                                        <Icon
+                                            color="gray.500"
+                                            size="5"
+                                            as={<MaterialCommunityIcons name="bookmark" />}
+                                        />
+                                        <Text color="gray.700" fontWeight="500">
+                                            Family
+                                        </Text>
+                                    </HStack>
+                                </Pressable>
+                                <Pressable px="5" py="2">
+                                    <HStack space="7" alignItems="center">
+                                        <Icon
+                                            color="gray.500"
+                                            size="5"
+                                            as={<MaterialCommunityIcons name="bookmark" />}
+                                        />
+                                        <Text color="gray.700" fontWeight="500">
+                                            Friends
+                                        </Text>
+                                    </HStack>
+                                </Pressable>
+                                <Pressable px="5" py="3">
+                                    <HStack space="7" alignItems="center">
+                                        <Icon
+                                            color="gray.500"
+                                            size="5"
+                                            as={<MaterialCommunityIcons name="bookmark" />}
+                                        />
+                                        <Text fontWeight="500" color="gray.700">
+                                            Work
+                                        </Text>
+                                    </HStack>
+                                </Pressable>
+                            </VStack>
                         </VStack>
                     </VStack>
                 </VStack>
-            </VStack>
-        </DrawerContentScrollView>
+            </DrawerContentScrollView>
+            <View style={{ padding: 20 }}>
+                <Pressable onPress={() => {
+                    dispatch(logoutAction());
+                    props.navigation.navigate('Home');
+                }}>
+                    <Text>Logout</Text>
+                </Pressable>
+            </View>
+        </View>
     );
 }
 export default DrawerNavigator = () => {
@@ -160,11 +158,10 @@ export default DrawerNavigator = () => {
                     component={TabNavigator}
                     options={{
                         drawerLabel: 'Home',
-                        title: 'Home Screen',
                     }}
                     initialParams={{ screen: 'HomeScreen' }}
                 />
-                <Drawer.Screen name="Login" component={TabNavigator}
+                <Drawer.Screen name="My Account" component={TabNavigator}
                     initialParams={{ screen: 'User' }}
                 />
             </Drawer.Navigator>

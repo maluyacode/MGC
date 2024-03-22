@@ -16,3 +16,8 @@ export const getToken = () => {
     const token = AsyncStorage.getItem('token');
     return token ? token : null
 }
+
+export const logout = () => {
+    AsyncStorage.removeItem('user')
+    AsyncStorage.removeItem('token');
+}

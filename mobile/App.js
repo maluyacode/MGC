@@ -6,6 +6,8 @@ import Toast from 'react-native-toast-message';
 import { NativeBaseProvider, extendTheme } from 'native-base';
 
 import DrawerNavigator from './Navigators/DrawerNavigator';
+import { Provider } from 'react-redux';
+import store from './Redux/store';
 
 
 const theme = extendTheme({ colors: newColorTheme });
@@ -22,20 +24,15 @@ export default function App() {
     <>
       <NavigationContainer>
         <NativeBaseProvider theme={theme}>
-          <StatusBar style='auto' />
-          {/* <Header /> */}
-          <DrawerNavigator />
-          {/* <TabNavigator /> */}
-          {/* <Stack.Navigator initialRouteName='Home' screenOptions={{
-          headerShown: true,
-        }}>
-        <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
-        <Stack.Screen options={{ headerShown: false }} name="Register" component={Register} />
-        <Stack.Screen options={{ headerShown: false }} name="Login" component={Login} />
-        
-      </Stack.Navigator> */}
+          <Provider store={store}>
 
-          <Toast />
+            <StatusBar style='auto' />
+
+            <DrawerNavigator />
+
+            <Toast />
+
+          </Provider>
         </NativeBaseProvider>
       </NavigationContainer>
     </>
