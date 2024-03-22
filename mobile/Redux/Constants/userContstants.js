@@ -1,0 +1,7 @@
+export const USER_LOGIN_SUCCESS = 'USER_LOGIN';
+export const USER_LOGOUT_SUCCESS = 'USER_LOGOUT'
+
+
+export const REQUEST_ACTION = 'REQUEST_ACTION'
+export const REQUEST_FAIL = 'REQUEST_FAIL'
+export const CLEAR_ERROR = 'CLEAR_ERROR'
