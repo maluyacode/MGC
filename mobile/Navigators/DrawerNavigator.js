@@ -5,7 +5,7 @@ import {
     DrawerContentScrollView,
     DrawerItemList,
 } from "@react-navigation/drawer";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Feather, FontAwesome5, FontAwesome6, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import {
     NativeBaseProvider,
     Button,
@@ -29,6 +29,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutAction } from "../Redux/Actions/userActions";
 import AdminNavigators from "./AdminNavigators";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { Image } from "react-native";
 global.__reanimatedWorkletInit = () => { };
 
 const Drawer = createDrawerNavigator();
@@ -40,27 +41,35 @@ function CustomDrawerContent(props) {
 
     return (
         <View style={{ flex: 1 }}>
-            <DrawerContentScrollView {...props} safeArea>
-                <VStack space="6" my="2" mx="1">
-                    <Box px="4" pb={10} backgroundColor={'#FED9ED'}>
-                        <Text bold color="gray.700">
-                            MGC Administration
+            <DrawerContentScrollView {...props} safeArea
+                contentContainerStyle={{ backgroundColor: '#E7BCDE' }}
+            >
+                <VStack space="6" mt="2">
+                    <Box px="4" pt={4}>
+                        <Image source={{ uri: userInfo.image }}
+                            height={75}
+                            borderRadius={50}
+                            width={75}
+                            style={{ marginBottom: 10, }}
+                        />
+                        <Text bold color="black.700">
+                            MGC Administrator
                         </Text>
-                        <Text fontSize="14" mt="1" color="gray.500" fontWeight="500">
+                        <Text fontSize="14" color="gray.600" fontWeight="500">
                             {userInfo.name}
                         </Text>
                     </Box>
-                    <VStack divider={<Divider />} space="4">
+                    <VStack divider={<Divider />} space="4" backgroundColor={'#fff'} p={2} >
                         <VStack space="1">
                             {props.state.routeNames.map((name, index) => (
                                 <Pressable
                                     key={index}
-                                    px="5"
+                                    px="1"
                                     py="3"
                                     rounded="md"
                                     bg={
                                         index === props.state.index
-                                            ? "rgba(6, 182, 212, 0.1)"
+                                            ? 'rgba(254, 217, 237, 0.5)'
                                             : "transparent"
                                     }
                                     onPress={(event) => {
@@ -70,19 +79,16 @@ function CustomDrawerContent(props) {
                                     <HStack space="7" alignItems="center">
                                         <Icon
                                             color={
-                                                index === props.state.index ? "primary.500" : "gray.500"
+                                                index === props.state.index ? "#67729D" : "gray.400"
                                             }
                                             size="5"
-                                            as={<MaterialCommunityIcons
-                                                // name={getIcon(name)}
-                                                name='view-dashboard'
-                                            />}
+                                            as={GetIcon(name)}
                                         />
                                         <Text
                                             style={{ marginLeft: -15 }}
                                             fontWeight="500"
                                             color={
-                                                index === props.state.index ? "primary.500" : "gray.700"
+                                                index === props.state.index ? "#67729D" : "gray.600"
                                             }
                                         >
                                             {name}
@@ -139,7 +145,7 @@ function CustomDrawerContent(props) {
                 </VStack>
             </DrawerContentScrollView>
             <Divider />
-            <View style={{ padding: 20, }} ml={1}>
+            <View style={{ padding: 20, }} ml={-2}>
                 <TouchableOpacity onPress={() => {
                     dispatch(logoutAction());
                     props.navigation.navigate('Home');
@@ -158,11 +164,21 @@ export default DrawerNavigator = () => {
         <Box flex={1}>
             <Drawer.Navigator
                 drawerContent={(props) => <CustomDrawerContent {...props} />}
-            // screenOptions={{
-            //     header: ({ navigation, route, options }) => {
-            //         return <Header navigation={navigation} />
-            //     }
-            // }}
+                screenOptions={{
+                    drawerActiveBackgroundColor: '#FED9ED',
+                    drawerActiveTintColor: '#fff',
+                    headerTitleStyle: { marginLeft: -10 },
+                    header: ({ navigation, route, options }) => {
+                        return (
+                            <Box style={{ elevation: 5 }} safeArea backgroundColor={'#67729D'} p={2} display={'flex'} flexDirection={'row'} alignItems={'center'}>
+                                <Pressable mr={2} onPress={() => navigation.toggleDrawer()}>
+                                    <Ionicons name='menu' size={30} />
+                                </Pressable>
+                                <Text color={'black'} fontSize={18} fontWeight={500} mt={-1}>{route.name}</Text>
+                            </Box>
+                        )
+                    }
+                }}
             >
                 {/* <Drawer.Screen
                     name="Home"
@@ -184,7 +200,6 @@ export default DrawerNavigator = () => {
                     initialParams={{ screen: 'OrdersList' }}
                 />
 
-
                 <Drawer.Screen name="Products" component={AdminNavigators}
                     initialParams={{ screen: 'ProductsList' }}
                 />
@@ -200,4 +215,21 @@ export default DrawerNavigator = () => {
             </Drawer.Navigator>
         </Box>
     );
+}
+
+const GetIcon = (name) => {
+    switch (name) {
+        case 'Dashboard':
+            return <MaterialCommunityIcons name={'view-dashboard'} />
+        case 'Orders':
+            return <MaterialCommunityIcons name={'package'} />
+        case 'Products':
+            return <MaterialCommunityIcons name={'tshirt-v'} />
+        case 'Categories':
+            return <MaterialCommunityIcons name={'vector-difference'} />
+        case 'Users':
+            return <Feather name={'users'} />
+        default:
+            return <MaterialCommunityIcons name={'view-dashboard'} />
+    }
 }
