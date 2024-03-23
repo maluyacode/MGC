@@ -3,10 +3,11 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button as RNButton } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import Toast from 'react-native-toast-message';
-import { NativeBaseProvider, extendTheme } from 'native-base';
+import { Container, NativeBaseProvider, extendTheme } from 'native-base';
 
 // import DrawerNavigator from './Navigators/DrawerNavigator';
 import { Provider, useSelector } from 'react-redux';
+import { PaperProvider } from 'react-native-paper';
 import store from './Redux/store';
 // import TabNavigator from './Navigators/TabNavigator';
 import Main from './Main';
@@ -37,15 +38,17 @@ export default function App() {
     <>
       <NavigationContainer>
         <NativeBaseProvider theme={theme}>
-          <Provider store={store}>
+          <PaperProvider>
+            <Provider store={store}>
 
-            <StatusBar style='auto' />
+              <StatusBar style='auto' />
 
-            <Main />
+              <Main />
 
-            <Toast />
+              <Toast />
 
-          </Provider>
+            </Provider>
+          </PaperProvider>
         </NativeBaseProvider>
       </NavigationContainer>
     </>

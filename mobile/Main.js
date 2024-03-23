@@ -9,7 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function Main() {
 
     const { userInfo } = useSelector(state => state.user);
-    
+
     return (
         <>
             {userInfo?.isAdmin ?

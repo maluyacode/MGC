@@ -6,6 +6,7 @@ import ProductsList from '../Screens/Admin/Product/ProductsList';
 import OrdersList from '../Screens/Admin/Order/OrdersList';
 import CategoriesList from '../Screens/Admin/Category/CategoriesList';
 import UsersList from '../Screens/Admin/User/UsersList';
+import CategoryCreate from '../Screens/Admin/Category/CategoryCreate';
 const Stack = createStackNavigator();
 
 export default function AdminNavigators() {
@@ -40,6 +41,15 @@ export default function AdminNavigators() {
                 name='CategoriesList'
                 component={CategoriesList}
                 options={{
+                    headerShown: false
+                }}
+            />
+
+            <Stack.Screen
+                name='CategoryCreate'
+                component={CategoryCreate}
+                options={{
+                    title: 'Create New Category',
                     headerShown: false
                 }}
             />

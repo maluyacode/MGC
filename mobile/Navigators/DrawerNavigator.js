@@ -52,7 +52,7 @@ function CustomDrawerContent(props) {
                             width={75}
                             style={{ marginBottom: 10, }}
                         />
-                        <Text bold color="black.700">
+                        <Text bold color="gray.700">
                             MGC Administrator
                         </Text>
                         <Text fontSize="14" color="gray.600" fontWeight="500">
