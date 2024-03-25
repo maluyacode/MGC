@@ -52,7 +52,7 @@ const Login = () => {
                 {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
                     <View style={styles.form}>
                         <Image style={styles.image} source={require('../../assets/mgc-logo.png')} />
-                        <Text style={styles.title}>Welcome back!</Text>
+                        {/* <Text style={styles.title}>Welcome back!</Text> */}
                         <TextInput placeholder="Username/Email" icon={<AntDesign name="user" size={20} color="#67729D" />}
                             onChangeText={handleChange('email')}
                             value={values.email}
@@ -109,7 +109,9 @@ const styles = StyleSheet.create({
     },
     image: {
         width: 320,
-        height: 175,
+        height: 200,
+        marginLeft: 'auto',
+        marginRight: 'auto',
         marginHorizontal: 'auto'
     }
 })

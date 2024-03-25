@@ -14,6 +14,6 @@ router.get('/:id', categoryController.softDelete) // soft delete
 
 router.delete('/:id', categoryController.destroy) // destroy / force delete
 
-router.put('/:id', categoryController.update) // update category
+router.put('/:id', upload.array('images'), categoryController.update) // update category
 
 module.exports = router;

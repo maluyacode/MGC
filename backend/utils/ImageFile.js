@@ -10,9 +10,13 @@ const uploadMultiple = async ({ imageFiles, request }) => {
     const basePath = `${request.protocol}://${request.get('host')}/${path}`;
 
     const images = imageFiles.map(image => {
-        return `${basePath}${image.filename}`
+        return {
+            public_id: `${path}${image.filename}`,
+            url: `${basePath}${image.filename}`,
+            name: `${image.filename}`,
+        }
     })
-    
+
     return images
 }
 

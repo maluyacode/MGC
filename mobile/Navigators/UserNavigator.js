@@ -16,7 +16,7 @@ const Stack = createStackNavigator();
 const UserNavigator = (props) => {
 
     const { loading, userInfo, loadingText, token } = useSelector(state => state.user);
-    // console.log(userInfo)
+
     return (
         <>
             {loading ? <WanderLoader loadingText={loadingText} /> :

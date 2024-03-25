@@ -10,7 +10,15 @@ const categoryModel = new mongoose.Schema({
         required: true,
     },
     images: [{
-        type: String
+        public_id: {
+            type: String,
+        },
+        url: {
+            type: String
+        },
+        name: {
+            type: String,
+        }
     }]
 }, { timestamps: true });
 
