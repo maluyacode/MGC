@@ -2,11 +2,12 @@ import { View, Image } from 'react-native'
 import React, { useCallback, useEffect, useState } from 'react'
 // import Button from '../../../Shared/Form/Button'
 import { DataTable, } from 'react-native-paper';
-import { getCategoriesAPI } from '../../../API/categoryApi';
+import { deleteCategoryAPI, getCategoriesAPI } from '../../../API/categoryApi';
 import { AddIcon, Box, Button, Divider, Input, ScrollView, SearchIcon, Text } from 'native-base';
 import Container from '../../../Shared/Container'
 import ListItems from './ListItems';
 import { useFocusEffect } from '@react-navigation/native';
+import ToastEmmitter from '../../../Shared/ToastEmmitter';
 
 export default function CategoriesList({ navigation }) {
 
@@ -16,6 +17,7 @@ export default function CategoriesList({ navigation }) {
         numberOfItemsPerPageList[0]
     );
     const [items, setItems] = useState([]);
+    const [filteredItems, setFilteredItems] = useState([]);
 
     const getAllCategories = async () => {
 
@@ -23,6 +25,7 @@ export default function CategoriesList({ navigation }) {
 
         if (data.success) {
             setItems(data.categories);
+            setFilteredItems(data.categories);
         } else {
             setLoading(false)
         }
@@ -31,8 +34,31 @@ export default function CategoriesList({ navigation }) {
     useFocusEffect(
         useCallback(() => {
             getAllCategories()
+            handleSearch("");
         }, [])
     )
+
+    const deleteCategory = async (id) => {
+        const { data } = await deleteCategoryAPI({
+            id: id,
+        })
+        if (data.success) {
+            ToastEmmitter.success('Deleted', data.message);
+            getAllCategories()
+        } else {
+            Alert.alert('', 'Cannot delete data category');
+            setLoading(false)
+        }
+    }
+
+    const handleSearch = (keyword) => {
+
+        const regex = new RegExp(keyword, 'i');
+        const filteredItems = items.filter(item => regex.test(item.name)
+        );
+        setFilteredItems(filteredItems);
+
+    }
 
 
     const from = page * itemsPerPage;
@@ -46,7 +72,7 @@ export default function CategoriesList({ navigation }) {
         <>
             <View>
                 <Box style={{ display: 'flex', flexDirection: 'row', gap: 10, justifyContent: 'space-between', padding: 5, height: 45 }}>
-                    <Input width={'85%'} placeholder='Search' leftElement={
+                    <Input onChangeText={value => handleSearch(value)} width={'85%'} placeholder='Search' leftElement={
                         <View style={{ marginHorizontal: 10, marginRight: -5 }}>
                             <SearchIcon />
                         </View>
@@ -64,8 +90,8 @@ export default function CategoriesList({ navigation }) {
                     </DataTable.Header>
                     <View style={{ maxHeight: '73%' }}>
                         <ScrollView >
-                            {items.slice(from, to).map((item, i) => (
-                                <ListItems item={item} key={i} />
+                            {filteredItems.slice(from, to).map((item, i) => (
+                                <ListItems item={item} key={i} deleteCategory={deleteCategory} />
                                 // <DataTable.Row key={i} style={{ paddingVertical: 5 }} onLongPress={() => console.log("Edit/Delete")} onPress={() => console.log('View')}>
                                 //     <DataTable.Cell>
                                 //         <Box>

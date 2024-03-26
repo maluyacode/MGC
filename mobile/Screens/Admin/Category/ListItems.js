@@ -5,7 +5,7 @@ import { Box, Button, CloseIcon, Image } from 'native-base'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
-export default function ListItems({ item }) {
+export default function ListItems({ item, deleteCategory }) {
 
     const navigation = useNavigation();
 
@@ -54,7 +54,7 @@ export default function ListItems({ item }) {
                         <Button size={'xs'} p={2} onPress={() => handleEdit(item._id)}>
                             <MaterialCommunityIcons name={'file-edit'} size={18} />
                         </Button>
-                        <Button colorScheme={'danger'} size={'xs'} p={2}>
+                        <Button onPress={() => deleteCategory(item._id)} colorScheme={'danger'} size={'xs'} p={2}>
                             <MaterialCommunityIcons name={'delete'} size={18} />
                         </Button>
                         <Button ml={'auto'} size={'xs'} p={2} colorScheme={'danger'} onPress={toggleAction}>

@@ -122,3 +122,18 @@ export const updateCategoryAPI = async ({ id, values }) => {
     }
 
 }
+
+export const deleteCategoryAPI = async ({ id = null, options = {} }) => {
+
+
+    try {
+
+        const response = await axios.delete(`${baseURL}/category/${id}`, config)
+
+        return response
+
+    } catch ({ response }) {
+        return response
+    }
+
+} 

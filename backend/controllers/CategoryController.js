@@ -101,6 +101,9 @@ exports.softDelete = async (req, res, next) => {
 exports.destroy = async (req, res, next) => {
     try {
 
+        await Category.delete({ _id: req.params.id }, (err, result) => {
+
+        });
 
         return res.status(200).json({
             success: true,

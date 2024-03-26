@@ -51,10 +51,7 @@ export default function CategoryCreate({ navigation }) {
 
             ToastEmmitter.success('Successfully Created', data.message)
             setLoading(false)
-            setTimeout(() => {
-                navigation.navigate('Categories')
-            }, 1000)
-
+            navigation.navigate('Categories')
         } else {
             setLoading(false)
             ToastEmmitter.error('Error occured', data?.message)

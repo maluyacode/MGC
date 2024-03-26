@@ -8,7 +8,7 @@ import { Alert, ImageBase, LogBox, StyleSheet, TouchableOpacity } from 'react-na
 import { Formik } from 'formik'
 import CategoryValidation from '../../../Validations/CategoryValidation'
 import { Button as RNButton } from 'react-native-elements'
-import { createCategory, getCategoryAPI, updateCategoryAPI } from '../../../API/categoryApi'
+import { createCategory, deleteCategoryAPI, getCategoryAPI, updateCategoryAPI } from '../../../API/categoryApi'
 import { useFocusEffect } from '@react-navigation/native'
 import ToastEmmitter from '../../../Shared/ToastEmmitter'
 import { Modal, Portal } from 'react-native-paper'
@@ -74,9 +74,7 @@ export default function CategoryUpdate({ route, navigation }) {
 
             ToastEmmitter.success('Updated', data.message)
             setLoading(false)
-            setTimeout(() => {
-                navigation.navigate('Categories')
-            }, 1000)
+            navigation.navigate('Categories')
 
         } else {
             setLoading(false)
