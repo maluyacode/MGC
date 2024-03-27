@@ -8,6 +8,7 @@ import CategoriesList from '../Screens/Admin/Category/CategoriesList';
 import UsersList from '../Screens/Admin/User/UsersList';
 import CategoryCreate from '../Screens/Admin/Category/CategoryCreate';
 import CategoryUpdate from '../Screens/Admin/Category/CategoryUpdate';
+import ProductCreate from '../Screens/Admin/Product/ProductCreate';
 const Stack = createStackNavigator();
 
 export default function AdminNavigators() {
@@ -37,6 +38,16 @@ export default function AdminNavigators() {
                     headerShown: false
                 }}
             />
+            <Stack.Screen
+                name='ProductCreate'
+                component={ProductCreate}
+                options={{
+                    title: 'Add New Product',
+                    headerShown: true,
+                    headerStyle: { height: 40 },
+                    headerTitleStyle: { fontSize: 16, marginLeft: -15 },
+                }}
+            />
 
             <Stack.Screen
                 name='CategoriesList'
@@ -52,7 +63,7 @@ export default function AdminNavigators() {
                     title: 'Create New Category',
                     headerShown: true,
                     headerStyle: { height: 40 },
-                    headerTitleStyle: { fontSize: 16, marginLeft: -15},
+                    headerTitleStyle: { fontSize: 16, marginLeft: -15 },
                 }}
             />
             <Stack.Screen

@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const Populate = require("mongoose-autopopulate");
+const mongooseDelete = require("mongoose-delete");
 
 const productModel = new mongoose.Schema({
     name: {
@@ -40,5 +42,8 @@ const productModel = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
     }]
 }, { timestamps: true });
+
+productModel.plugin(Populate);
+productModel.plugin(mongooseDelete, { overrideMethods: 'all' })
 
 module.exports = mongoose.model('Product', productModel);
