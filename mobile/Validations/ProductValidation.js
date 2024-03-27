@@ -19,12 +19,10 @@ export default ProductValidation = Yup.object().shape({
     brand: Yup.string()
         .required('This field is required'),
 
-    colors: Yup.array()
-        .test(() => {
-
-        }),
-
-    sizes: Yup.array()
-        .required('This field is required'),
+    // colors: Yup.array().test('is-unique', 'Array must have unique values', function (value) {
+    //     return value.length !== 0;
+    // }),
+    // sizes: Yup.array()
+    //     .required('This field is required'),
 });
 

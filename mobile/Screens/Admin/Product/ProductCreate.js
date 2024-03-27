@@ -1,6 +1,7 @@
-import { View, Text, StyleSheet, TextComponent } from 'react-native'
+import { View, Text, StyleSheet, TextComponent, Alert } from 'react-native'
 import React, { useCallback, useRef, useState } from 'react'
 import { Box, Button, CheckIcon, Divider, FormControl, Input, Modal, ScrollView, Select, Stack } from 'native-base'
+import { Button as RNButton } from 'react-native-elements'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { Chip, TextInput } from 'react-native-paper'
 import colors from '../.././../utils/colors.json'
@@ -13,6 +14,8 @@ import FilePicker from '../../../Shared/Form/FilePicker'
 import CheckboxInput from '../../../Shared/Form/CheckboxInput'
 import { Formik } from 'formik'
 import ProductValidation from '../../../Validations/ProductValidation'
+import { productCreateAPI } from '../../../API/productAPI'
+import ToastEmmitter from '../../../Shared/ToastEmmitter'
 
 const options = [
     { label: 'XS', value: 'XS' },
@@ -22,16 +25,9 @@ const options = [
     { label: 'XXL', value: 'XXL' },
 ];
 
-const capitalizedColors = colors.map(color => {
-    return {
-        value: color.name.charAt(0).toUpperCase() + color.name.slice(1),
-        label: color.name.charAt(0).toUpperCase() + color.name.slice(1)
-    };
-});
+export default function ProductCreate({ navigation }) {
 
-
-export default function ProductCreate() {
-
+    const [loading, setLoading] = useState(false);
     const [selectedColors, setSelectedColors] = useState([]);
     const [groupValues, setGroupValues] = React.useState([]);
     const [categories, setCategories] = useState([]);
@@ -57,13 +53,33 @@ export default function ProductCreate() {
     const [selectedOptions, setSelectedOptions] = useState([]);
 
 
-    const handleSelect = value => {
+    const handleSelect = (value, selectedOptions) => {
         if (selectedOptions.includes(value)) {
-            setSelectedOptions(selectedOptions.filter(option => option !== value));
+            // setSelectedOptions(selectedOptions.filter(option => option !== value));
+            formik.current.setFieldValue('sizes', selectedOptions.filter(option => option !== value))
         } else {
-            setSelectedOptions([...selectedOptions, value]);
+            // setSelectedOptions([...selectedOptions, value]);
+            formik.current.setFieldValue('sizes', [...selectedOptions, value])
         }
     };
+
+    const submitForm = async (values) => {
+        setLoading(true)
+        if (values.sizes?.length <= 0 || values.images?.length <= 0 || values.colors?.length <= 0) {
+            Alert.alert("Cannot Proceed", "Make sure you fill out all fields")
+            return;
+        }
+        const { data } = await productCreateAPI(values);
+
+        if (data.success) {
+            ToastEmmitter.success('Successfully Created', data.message)
+            setLoading(false)
+            navigation.navigate('Products')
+        } else {
+            setLoading(false)
+            ToastEmmitter.error('Error occured', data?.message)
+        }
+    }
 
     return (
         <>
@@ -71,7 +87,7 @@ export default function ProductCreate() {
                 <View style={styles.container}>
                     <Formik
                         innerRef={formik}
-                        onSubmit={(values) => console.log(values)}
+                        onSubmit={(values) => submitForm(values)}
                         // validateOnBlur={false}
                         validateOnChange={true}
                         // validateOnMount={false}
@@ -81,10 +97,10 @@ export default function ProductCreate() {
                             category: '', price: '',
                             stock: '', brand: '',
                             brand: '', colors: [],
-                            sizes: [],
+                            sizes: [], images: [],
                         }}
                     >
-                        {({ handleSubmit, handleChange, values, errors, touched, resetForm, setFieldTouched }) => (
+                        {({ handleSubmit, handleChange, setFieldValue, values, errors, touched, resetForm, setFieldTouched }) => (
 
                             <>
 
@@ -165,40 +181,41 @@ export default function ProductCreate() {
                                         {errors.brand}
                                     </FormControl.ErrorMessage>
                                 </FormControl>
-                                {console.log(errors.colors)}
-                                {console.log(touched.colors)}
+
                                 <FormControl focusable={false} style={styles.formControl} isInvalid={errors.colors && touched.colors}>
                                     <ColorPicker
-                                        onPressOut={() => setFieldTouched('colors', true)}
-                                        onSelection={setSelectedColors}
+                                        onSelection={(value) => setFieldValue('colors', value)}
                                         data={colors}
                                     />
-                                    <FormControl.ErrorMessage style={styles.errorMessage}>
-                                        {errors.colors}
-                                    </FormControl.ErrorMessage>
                                 </FormControl>
 
                                 <FormControl focusable={false} style={styles.formControl} isInvalid={false}>
                                     <CheckboxInput
                                         containerStyle={{ marginTop: -10, marginBottom: 20 }}
                                         options={options}
-                                        selectedOptions={selectedOptions}
-                                        onSelect={handleSelect}
+                                        selectedOptions={values.sizes}
+                                        onSelect={(value) => {
+                                            handleSelect(value, values.sizes)
+                                        }}
                                     />
-                                    <FormControl.ErrorMessage style={styles.errorMessage}>
-                                        This field is required
-                                    </FormControl.ErrorMessage>
                                 </FormControl>
-
                                 <FormControl focusable={false} style={styles.formControl} isInvalid={false}>
-                                    <FilePicker />
-                                    <FormControl.ErrorMessage style={styles.errorMessage}>
-                                        This field is required
-                                    </FormControl.ErrorMessage>
+                                    <FilePicker
+                                        onPick={(value) => setFieldValue('images', value)}
+                                    />
                                 </FormControl>
 
                                 <Box display={'flex'} flexDir={'row'} justifyContent={'center'} style={{ gap: 10 }} >
 
+                                    <Button onPress={() => {
+                                        // resetForm()
+                                        // setSelectedImages([]);
+                                    }} size={'xs'} colorScheme={'rose'} width={120}>
+                                        <Text color={'#fff'}>Clear</Text>
+                                    </Button>
+
+                                    <RNButton disabled={loading} loading={loading} onPress={handleSubmit} buttonStyle={styles.rnButton}
+                                        title={<Text color={'#fff'}>Create</Text>} />
 
                                 </Box>
                             </>
@@ -214,6 +231,10 @@ export default function ProductCreate() {
 
 
 const styles = StyleSheet.create({
+    rnButton: {
+        height: 40,
+        width: 120
+    },
     customInputStyle: {
         width: '100%',
         height: 40,

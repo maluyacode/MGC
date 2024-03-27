@@ -1,5 +1,5 @@
 import { View, StyleSheet, TextComponent, TouchableOpacity, FlatList } from 'react-native'
-import React, { Fragment, useCallback, useEffect, useState } from 'react'
+import React, { Fragment, useCallback, useEffect, useRef, useState } from 'react'
 import { Box, Button, Divider, FormControl, HStack, Input, Modal, Spinner, VStack, Text, ScrollView } from 'native-base'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import debounce from 'lodash.debounce';
@@ -12,6 +12,7 @@ export default function ColorPicker({ onSelection, data, selectedItems = [], ...
     const [isModalShow, setModal] = useState(false);
     const [colors, setColors] = useState(data);
     const [selectedColors, setSelectedColors] = useState([]);
+    const items = useRef()
 
     const searcher = async (word) => {
         const regex = new RegExp(word, 'i');
@@ -68,7 +69,11 @@ export default function ColorPicker({ onSelection, data, selectedItems = [], ...
                         <Box key={i} display={'flex'} flexDir={'row'} mr={2} alignItems={'center'} p={1} style={{ gap: 2, borderColor: 'gray', borderWidth: 1, borderRadius: 30 }}>
                             {Circle({ color: `rgb(${color.rgb})`, size: 15 })}
                             <Text style={{ fontSize: 18 }}>{color.name}</Text>
-                            <TouchableOpacity onPress={() => onSelect(color)}>
+                            <TouchableOpacity onPress={() => {
+                                setTimeout(() => {
+                                    onSelect(color)
+                                }, 200)
+                            }}>
                                 <MaterialCommunityIcons name={'close-circle'} size={20} color={'gray'} />
                             </TouchableOpacity>
                         </Box>
@@ -77,7 +82,7 @@ export default function ColorPicker({ onSelection, data, selectedItems = [], ...
             </Box>
 
 
-            <Modal isOpen={isModalShow}>
+            <Modal isOpen={isModalShow} >
                 <Modal.Content width={'90%'} >
                     <Modal.Header>
                         <Input onChangeText={value => {
@@ -96,8 +101,8 @@ export default function ColorPicker({ onSelection, data, selectedItems = [], ...
                                 data={filteredColors}
                                 keyExtractor={(item, index) => index.toString()}
                                 renderItem={({ item }) => (
-                                    <Fragment>
-                                        <TouchableOpacity onPress={() => onSelect(item)}>
+                                    <Fragment >
+                                        <TouchableOpacity ref={items} onPress={() => onSelect(item)}>
                                             <Box style={{ paddingHorizontal: 5, paddingVertical: 20, display: 'flex', flexDirection: 'row', gap: 10, alignItems: 'center' }}>
                                                 {Circle({ color: `rgb(${item.rgb})`, size: 15 })}
                                                 <Text style={{ fontSize: 18 }}>{item.name}</Text>

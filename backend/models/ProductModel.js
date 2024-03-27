@@ -20,14 +20,26 @@ const productModel = new mongoose.Schema({
         default: 0
     },
     colors: [{
-        type: String,
+        name: {
+            type: String,
+        },
+        rgb: {
+            type: Array,
+        }
     }],
     sizes: [{
         type: String,
     }],
     images: [{
-        type: String,
-        required: true,
+        public_id: {
+            type: String,
+        },
+        url: {
+            type: String
+        },
+        name: {
+            type: String,
+        }
     }],
     brand: {
         type: String,
