@@ -39,3 +39,79 @@ export const productCreateAPI = async (values) => {
         return response
     }
 }
+
+export const getProductsAPI = async () => {
+
+    try {
+
+        const response = await axios.get(`${baseURL}/product`, config)
+
+        return response
+
+    } catch ({ response }) {
+        return response
+    }
+
+}
+
+export const getProductAPI = async (id) => {
+
+    try {
+
+        const response = await axios.get(`${baseURL}/product/${id}`, config)
+
+        return response
+
+    } catch ({ response }) {
+        return response
+    }
+
+}
+
+export const productUpdateAPI = async ({ id, values }) => {
+    console.log(values)
+    const formData = new FormData();
+
+    if (values.images.length > 0) {
+        values.images = await setImages(values.images);
+        values.images.map(image => {
+            formData.append('images', image);
+        })
+    } else {
+        delete values.images
+    }
+
+    formData.append('name', values.name);
+    formData.append('category', values.category);
+    formData.append('description', values.description);
+    formData.append('price', values.price);
+    formData.append('stock', values.stock);
+    formData.append('brand', values.brand);
+    formData.append('colors', JSON.stringify(values.colors));
+    formData.append('sizes', JSON.stringify(values.sizes));
+
+    try {
+
+        const response = await axios.put(`${baseURL}/product/${id}`, formData, config)
+
+        return response
+
+    } catch ({ response }) {
+        return response
+    }
+
+}
+
+export const productDeleteAPI = async ({ id }) => {
+
+    try {
+
+        const response = await axios.delete(`${baseURL}/product/${id}`, config)
+
+        return response
+
+    } catch ({ response }) {
+        return response
+    }
+
+}

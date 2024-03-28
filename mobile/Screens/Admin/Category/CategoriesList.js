@@ -88,7 +88,7 @@ export default function CategoriesList({ navigation }) {
                         <DataTable.Title>Name</DataTable.Title>
                         <DataTable.Title>Description</DataTable.Title>
                     </DataTable.Header>
-                    <View style={{ maxHeight: '73%' }}>
+                    <View style={{ maxHeight: '80%' }}>
                         <ScrollView >
                             {filteredItems.slice(from, to).map((item, i) => (
                                 <ListItems item={item} key={i} deleteCategory={deleteCategory} />
@@ -113,7 +113,10 @@ export default function CategoriesList({ navigation }) {
                         numberOfItemsPerPage={itemsPerPage}
                         onItemsPerPageChange={onItemsPerPageChange}
                         showFastPaginationControls
-                        selectPageDropdownLabel={'Rows per page'}
+                        selectPageDropdownLabel={'Page rows'}
+                        style={{
+                            justifyContent: 'center'
+                        }}
                     />
                 </DataTable>
             </View>

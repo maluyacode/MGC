@@ -53,6 +53,11 @@ export default function ColorPicker({ onSelection, data, selectedItems = [], ...
         }
     };
 
+    // useEffect(() => {
+    //     if (!selectedColors || selectedItems !== selectedColors) {
+    //         setSelectedColors(selectedItems);
+    //     }
+    // }, [selectedItems, selectedColors]);
 
     return (
         <>

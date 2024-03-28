@@ -49,13 +49,14 @@ const productModel = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'Category',
         required: true,
+        autopopulate: true,
     },
     reviews: [{
         type: mongoose.Schema.ObjectId,
     }]
 }, { timestamps: true });
 
-productModel.plugin(Populate);
 productModel.plugin(mongooseDelete, { overrideMethods: 'all' })
+productModel.plugin(Populate);
 
 module.exports = mongoose.model('Product', productModel);

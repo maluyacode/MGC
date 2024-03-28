@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import * as DocumentPicker from 'expo-document-picker'
 import { AddIcon, Box, Button, Flex, Icon, Image, ScrollView, Spinner, VStack } from 'native-base';
 
-export default function FilePicker({ onPick, oldImages = [] }) {
+export default function FilePicker({ onPick, oldImages = [], selectedItems = [] }) {
 
     const [selectedImages, setSelectedImages] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -92,3 +92,4 @@ export default function FilePicker({ onPick, oldImages = [] }) {
         </Box>
     )
 }
+

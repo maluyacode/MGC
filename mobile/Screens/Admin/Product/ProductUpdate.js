@@ -14,8 +14,9 @@ import FilePicker from '../../../Shared/Form/FilePicker'
 import CheckboxInput from '../../../Shared/Form/CheckboxInput'
 import { Formik } from 'formik'
 import ProductValidation from '../../../Validations/ProductValidation'
-import { productCreateAPI } from '../../../API/productAPI'
+import { getProductAPI, productCreateAPI, productUpdateAPI } from '../../../API/productAPI'
 import ToastEmmitter from '../../../Shared/ToastEmmitter'
+import ShowImages from '../../../Shared/ShowImages'
 
 const options = [
     { label: 'XS', value: 'XS' },
@@ -26,11 +27,16 @@ const options = [
     { label: 'XXL', value: 'XXL' },
 ];
 
-export default function ProductCreate({ navigation }) {
+export default function ProductUpdate({ navigation, route }) {
 
+    const id = route.params;
     const [loading, setLoading] = useState(false);
+    const [selectedColors, setSelectedColors] = useState([]);
+    const [groupValues, setGroupValues] = React.useState([]);
     const [categories, setCategories] = useState([]);
+    const [product, setProduct] = useState({});
     const formik = useRef()
+    const [showImages, setShowImages] = useState(false);
 
     const getAllCategories = async () => {
 
@@ -43,9 +49,21 @@ export default function ProductCreate({ navigation }) {
         }
     }
 
+    const getProduct = async () => {
+
+        const { data } = await getProductAPI(id);
+
+        if (data.success) {
+            setProduct(data.product);
+        } else {
+            setLoading(false)
+        }
+    }
+
     useFocusEffect(
         useCallback(() => {
             getAllCategories()
+            getProduct()
         }, [])
     )
 
@@ -54,25 +72,26 @@ export default function ProductCreate({ navigation }) {
 
     const handleSelect = (value, selectedOptions) => {
         if (selectedOptions.includes(value)) {
-            // setSelectedOptions(selectedOptions.filter(option => option !== value));
             formik.current.setFieldValue('sizes', selectedOptions.filter(option => option !== value))
         } else {
-            // setSelectedOptions([...selectedOptions, value]);
             formik.current.setFieldValue('sizes', [...selectedOptions, value])
         }
     };
 
     const submitForm = async (values) => {
+        console.log(values)
         setLoading(true)
-        console.log(values.images)
-        if (values.sizes.length <= 0 || values.images.length <= 0 || values.colors.length <= 0) {
+        if (values.sizes?.length <= 0 || values.colors?.length <= 0) {
             Alert.alert("Cannot Proceed", "Make sure you fill out all fields")
             return;
         }
-        const { data } = await productCreateAPI(values);
+        const { data } = await productUpdateAPI({
+            id,
+            values
+        });
 
         if (data.success) {
-            ToastEmmitter.success('Successfully Created', data.message)
+            ToastEmmitter.success('Updated', data.message)
             setLoading(false)
             navigation.navigate('Products')
         } else {
@@ -83,9 +102,11 @@ export default function ProductCreate({ navigation }) {
 
     return (
         <>
+            <ShowImages images={product.images} show={showImages} setShow={setShowImages} />
             <ScrollView nestedScrollEnabled={true}>
                 <View style={styles.container}>
                     <Formik
+                        key={product._id}
                         innerRef={formik}
                         onSubmit={(values) => submitForm(values)}
                         // validateOnBlur={false}
@@ -93,17 +114,17 @@ export default function ProductCreate({ navigation }) {
                         // validateOnMount={false}
                         validationSchema={ProductValidation}
                         initialValues={{
-                            name: '', description: '',
-                            category: '', price: '',
-                            stock: '', brand: '',
-                            brand: '', colors: [],
-                            sizes: [], images: [],
+                            name: product?.name, description: product.description,
+                            category: product?.category?._id, price: product.price?.toString(),
+                            stock: product.stock?.toString(), brand: product.brand,
+                            colors: product.colors || [],
+                            sizes: product.sizes || [],
+                            images: [],
                         }}
                     >
                         {({ handleSubmit, handleChange, setFieldValue, values, errors, touched, resetForm, setFieldTouched }) => (
 
                             <>
-
                                 <FormControl focusable={false} style={styles.formControl} isInvalid={errors.name && touched.name}>
                                     <TextInput label={'Name'} style={styles.inputField} mode='outlined' placeholderTextColor={'gray'} theme={''} dense={'40dp'}
                                         nativeID='name'
@@ -184,9 +205,9 @@ export default function ProductCreate({ navigation }) {
 
                                 <FormControl focusable={false} style={styles.formControl} isInvalid={errors.colors && touched.colors}>
                                     <ColorPicker
+                                        selectedItems={values.colors}
                                         onSelection={(value) => setFieldValue('colors', value)}
                                         data={colors}
-                                        selectedItems={values.colors}
                                     />
                                 </FormControl>
 
@@ -200,23 +221,27 @@ export default function ProductCreate({ navigation }) {
                                         }}
                                     />
                                 </FormControl>
+                                <Button onPress={() => setShowImages(true)} mb={2} mt={-3} variant={'outline'} style={{ width: '30%' }} size={'xs'}>
+                                    <Text style={{ fontSize: 12 }}>Previous Images</Text>
+                                </Button>
                                 <FormControl focusable={false} style={styles.formControl} isInvalid={false}>
                                     <FilePicker
                                         onPick={(value) => setFieldValue('images', value)}
-                                        selectedItems={values.images}
                                     />
                                 </FormControl>
-                                {/* {console.log(values)} */}
+                                {console.log(values.images)}
                                 <Box display={'flex'} flexDir={'row'} justifyContent={'center'} style={{ gap: 10 }} >
 
                                     <Button onPress={() => {
                                         resetForm()
+                                        setLoading(false)
+                                        // setSelectedImages([]);
                                     }} size={'xs'} colorScheme={'rose'} width={120}>
                                         <Text color={'#fff'}>Clear</Text>
                                     </Button>
 
                                     <RNButton disabled={loading} loading={loading} onPress={handleSubmit} buttonStyle={styles.rnButton}
-                                        title={<Text color={'#fff'}>Create</Text>} />
+                                        title={<Text color={'#fff'}>Update</Text>} />
 
                                 </Box>
                             </>

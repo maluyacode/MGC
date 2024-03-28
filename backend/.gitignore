@@ -3,3 +3,5 @@
 getEmails.js
 /public/uploads
 /android
+emails.json
+emails.txt
