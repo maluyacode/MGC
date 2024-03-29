@@ -30,21 +30,20 @@ const orderSchema = new mongoose.Schema({
     },
     orderItems: [
         {
-            name: {
-                type: String,
-                required: true
-            },
             quantity: {
                 type: Number,
                 required: true
             },
-            image: {
-                type: String,
-                required: true
+            color: {
+                name: {
+                    type: String,
+                },
+                rgb: {
+                    type: Array,
+                }
             },
-            price: {
-                type: Number,
-                required: true
+            size: {
+                type: String
             },
             product: {
                 type: mongoose.Schema.Types.ObjectId,
@@ -58,7 +57,7 @@ const orderSchema = new mongoose.Schema({
         required: true,
         default: 0.0
     },
-    orderStatus: {
+    orderStatus: {  
         type: String,
         required: true,
         default: 'Processing' // Processing, Confirmed, Shipped, Delivered

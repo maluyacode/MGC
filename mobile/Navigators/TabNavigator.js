@@ -7,6 +7,7 @@ import UserNavigator from './UserNavigator'
 import Home from '../Screens/Home'
 import Cart from '../Screens/Cart/Cart'
 import Order from '../Screens/Order/Order'
+import HomeNavigator from './HomeNavigator'
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -27,8 +28,8 @@ const TabNavigator = () => {
             >
 
                 <Tab.Screen
-                    name='Home'
-                    component={Home}
+                    name='HomeScreen'
+                    component={HomeNavigator}
                     options={{
                         tabBarIcon: ({ color }) => {
                             return <Icon
@@ -39,6 +40,7 @@ const TabNavigator = () => {
                             />
                         },
                     }}
+                // initialParams={{ screen: 'Home' }}
                 />
 
 
@@ -48,10 +50,10 @@ const TabNavigator = () => {
                     options={{
                         tabBarIcon: ({ color }) => {
                             return <Icon
-                                name='dropbox'
+                                name='heart'
                                 style={{ position: 'relative' }}
                                 color={color}
-                                size={25}
+                                size={24}
                             />
                         },
                     }}

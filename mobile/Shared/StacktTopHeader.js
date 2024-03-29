@@ -1,21 +1,21 @@
-import { FontAwesome, Ionicons } from '@expo/vector-icons';
+import { FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { Box } from 'native-base';
 import React from 'react'
 import { Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { Badge } from 'react-native-elements';
 
-const Header = ({ navigation, headTitle }) => {
+export default StacktTopHeader = ({ navigation, route, headTitle }) => {
 
     return (
         <Box safeArea style={styles.topView}>
             <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-                {/* <Pressable onPress={() => navigation.toggleDrawer()}>
-                    <Ionicons name='menu' size={25} />
-                </Pressable> */}
-                <Text style={styles.logoText}>{headTitle || 'MGC'}</Text>
+                <Pressable onPress={() => navigation.goBack()}>
+                    <MaterialCommunityIcons name={'backburger'} size={25} />
+                </Pressable>
+                <Text style={styles.logoText}>{headTitle || route.params.name}</Text>
             </View>
-            <View style={{ display: 'flex', flexDirection: 'row', gap: 15 }}>
+            {/* <View style={{ display: 'flex', flexDirection: 'row', gap: 15 }}>
                 <TouchableOpacity>
                     <FontAwesome name='search' size={25} color={'#67729D'} />
                 </TouchableOpacity>
@@ -26,9 +26,10 @@ const Header = ({ navigation, headTitle }) => {
                         containerStyle={{ position: 'absolute', top: -4, right: -4 }}
                     />
                 </TouchableOpacity>
-            </View>
+            </View> */}
         </Box>
     )
+
 }
 
 const styles = StyleSheet.create({
@@ -45,9 +46,7 @@ const styles = StyleSheet.create({
     },
     logoText: {
         fontSize: 25,
-        fontWeight: '700',
+        fontWeight: '500',
         color: '#67729D'
     }
 });
-
-export default Header

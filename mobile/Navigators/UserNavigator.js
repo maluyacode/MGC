@@ -11,6 +11,7 @@ import { getUser } from '../utils/user';
 import WanderLoader from '../Shared/Loader/WanderLoader';
 import { useSelector } from 'react-redux';
 import SyncStorage from 'sync-storage'
+import Header from '../Shared/Header';
 const Stack = createStackNavigator();
 
 const UserNavigator = (props) => {
@@ -53,9 +54,9 @@ const UserNavigator = (props) => {
                             component={Profile}
                             options={{
                                 headerShown: true,
-                                header: () => {
-                                    return <Text>My account</Text>
-                                }
+                                header: () => (
+                                    <Header headTitle={'Profile'} />
+                                ),
                             }}
                         />
 

@@ -15,7 +15,7 @@ export default function Main() {
             {userInfo?.isAdmin ?
                 <DrawerNavigator /> :
                 <>
-                    <Header />
+                    {/* <Header /> */}
                     <TabNavigator />
                 </>
             }
