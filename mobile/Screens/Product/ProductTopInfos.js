@@ -3,9 +3,10 @@ import React from 'react'
 import styles from './ProductDetails.Styles'
 import { Image, ScrollView } from 'native-base'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { totalItemPrice } from '../../utils/computations'
 
-export default function ProductTopInfos({ product }) {
-    console.log(product.images.length)
+export default function ProductTopInfos({ product, selectedSize }) {
+
     return (
         <>
             <View style={styles.topContainer}>
@@ -34,7 +35,7 @@ export default function ProductTopInfos({ product }) {
 
             <View style={{ paddingHorizontal: 10 }}>
                 <Text style={{ fontSize: 12, marginBottom: 5 }}>{product.category.name}</Text>
-                <Text style={styles.productName}>₱{product.price}</Text>
+                <Text style={styles.productName}>₱{totalItemPrice(1, selectedSize, product.price)}</Text>
             </View>
         </>
     )

@@ -4,8 +4,12 @@ import { Box } from 'native-base';
 import React from 'react'
 import { Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { Badge } from 'react-native-elements';
+import { useSelector } from 'react-redux';
 
-const Header = ({ navigation, headTitle }) => {
+const Header = ({ headTitle }) => {
+
+    const { cartItems } = useSelector(state => state.cart);
+    const navigation = useNavigation()
 
     return (
         <Box safeArea style={styles.topView}>
@@ -19,10 +23,10 @@ const Header = ({ navigation, headTitle }) => {
                 <TouchableOpacity>
                     <FontAwesome name='search' size={25} color={'#67729D'} />
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('CartNavigators')}>
                     <FontAwesome name='shopping-cart' size={25} color={'#67729D'} />
                     <Badge status='error'
-                        value={3}
+                        value={cartItems?.length}
                         containerStyle={{ position: 'absolute', top: -4, right: -4 }}
                     />
                 </TouchableOpacity>

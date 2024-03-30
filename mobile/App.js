@@ -27,7 +27,8 @@ export default function App() {
 
   const asyncStorage = async () => {
     const data = await SyncStorage.init();
-    console.log('AsyncStorage is ready!', data);
+    const cartItems = SyncStorage.get('cartItems')
+    // console.log('AsyncStorage is ready!', cartItems);
   }
 
   useEffect(() => {

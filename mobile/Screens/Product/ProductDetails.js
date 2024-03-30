@@ -14,11 +14,14 @@ import SyncStorage from 'sync-storage'
 import ToastEmmitter from '../../Shared/ToastEmmitter';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCart } from '../../Redux/Actions/cartActions';
+import { totalItemPrice } from '../../utils/computations';
+import { useNavigation } from '@react-navigation/native';
 
 const completeCustomOrder = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 
 export default function ProductDetails({ route }) {
 
+    const navigation = useNavigation();
     const dispatch = useDispatch()
     const { cartItems } = useSelector(state => state.cart);
     const product = route.params;
@@ -62,8 +65,6 @@ export default function ProductDetails({ route }) {
 
     }
 
-    console.log(cartItems)
-
     return (
         <>
             <Modal size={'full'} animationPreset='slide' isOpen={modalVisible} onClose={() => setModalVisible(false)} initialFocusRef={initialRef} finalFocusRef={finalRef}>
@@ -105,7 +106,7 @@ export default function ProductDetails({ route }) {
 
                         <View style={{ display: 'flex', justifyContent: 'center', flexDirection: 'row', alignItems: 'center', gap: 5, marginVertical: 10 }}>
                             <Text style={{ fontSize: 18, fontStyle: 'italic' }}>Total:</Text>
-                            <Text style={{ fontSize: 18, fontStyle: 'italic' }}>₱{product.price * quantity}</Text>
+                            <Text style={{ fontSize: 18, fontStyle: 'italic' }}>₱{totalItemPrice(quantity, selectedSize, product.price)}</Text>
                         </View>
                     </Modal.Body>
                     <Modal.Footer>
@@ -123,7 +124,7 @@ export default function ProductDetails({ route }) {
 
             <Container style={{ padding: 15, backgroundColor: '#fff' }}>
 
-                <ProductTopInfos product={product} />
+                <ProductTopInfos selectedSize={selectedSize} product={product} />
 
                 <View style={{ paddingHorizontal: 10, marginVertical: 10 }}>
                     <Text style={{ marginBottom: 10 }}>Select Color</Text>
@@ -157,7 +158,6 @@ export default function ProductDetails({ route }) {
                         <View style={[styles.flexRow, styles.colorsContainer]}>
                             {product?.sizes.map((size, i) => (
                                 <>
-                                    {console.log(size)}
                                     {selectedSize !== size ?
                                         <TouchableNativeFeedback onPress={() => toggleSize(size)}>
                                             <View style={[styles.notSelectedSize, styles.flexRow]}>
@@ -184,7 +184,7 @@ export default function ProductDetails({ route }) {
                     {cartItems.find(item => item.product._id === product._id) ?
 
                         <Button style={{ width: '87%' }} onPress={() => console.log('GOTO CART')}>
-                            <Text>Go to Cart</Text>
+                            <Text onPress={() => navigation.navigate('CartNavigators')}> Go to Cart</Text>
                         </Button> :
 
                         <Button style={{ width: '87%' }} onPress={() => {
@@ -213,7 +213,7 @@ export default function ProductDetails({ route }) {
                     <ProductReviews product={product} />
                 }
 
-            </Container>
+            </Container >
         </>
     )
 }

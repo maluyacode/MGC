@@ -1,8 +1,7 @@
-import { View, Text, Pressable } from 'react-native'
+import { View, Text, Pressable, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { FlatList } from 'native-base';
 import { Avatar, Button, Card } from 'react-native-paper';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
 const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
@@ -41,7 +40,7 @@ export default function TrendProducts({ items }) {
                 marginX={3}
                 data={items}
                 renderItem={renderItem}
-                keyExtractor={(item) => item.id}
+                keyExtractor={(item) => item._id}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false} // Optional: hide the horizontal scroll indicator
             />

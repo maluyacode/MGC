@@ -9,9 +9,13 @@ import Cart from '../Screens/Cart/Cart'
 import Order from '../Screens/Order/Order'
 import HomeNavigator from './HomeNavigator'
 
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
+
 const Tab = createMaterialTopTabNavigator();
 
-const TabNavigator = () => {
+const TabNavigator = ({ navigation, route }) => {
+    
+
     return (
         <>
             <Tab.Navigator
@@ -63,6 +67,10 @@ const TabNavigator = () => {
                     name='User'
                     component={UserNavigator}
                     options={{
+                        // tabBarStyle: { display: "none" },
+                        tabBarShowLabel: false,
+                        swipeEnabled: false,
+                        animationEnabled: false,
                         tabBarIcon: ({ color }) => {
                             return <Icon
                                 name='user'
@@ -72,6 +80,7 @@ const TabNavigator = () => {
                             />
                         },
                     }}
+                    // initialParams={{ screen: 'Profile' }}
                 />
 
             </Tab.Navigator>

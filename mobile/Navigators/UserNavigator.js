@@ -12,9 +12,10 @@ import WanderLoader from '../Shared/Loader/WanderLoader';
 import { useSelector } from 'react-redux';
 import SyncStorage from 'sync-storage'
 import Header from '../Shared/Header';
+import CartNavigators from './CartNavigators';
 const Stack = createStackNavigator();
 
-const UserNavigator = (props) => {
+const UserNavigator = ({ navigation, route }) => {
 
     const { loading, userInfo, loadingText, token } = useSelector(state => state.user);
 
@@ -49,16 +50,31 @@ const UserNavigator = (props) => {
                             />
                         </>
                         :
-                        <Stack.Screen
-                            name='Profile'
-                            component={Profile}
-                            options={{
-                                headerShown: true,
-                                header: () => (
-                                    <Header headTitle={'Profile'} />
-                                ),
-                            }}
-                        />
+                        <>
+
+                            <Stack.Screen
+                                name='Profile'
+                                component={Profile}
+                                options={{
+                                    headerShown: true,
+                                    header: () => (
+                                        <Header headTitle={'Profile'} />
+                                    ),
+                                }}
+                            />
+
+                            <Stack.Screen
+                                name='CartNavigators'
+                                component={CartNavigators}
+                                options={{
+                                    animationEnabled: false,
+                                    headerShown: false,
+                                    // header: () => (
+                                    //     <Header headTitle={'Profile'} />
+                                    // ),
+                                }}
+                            />
+                        </>
 
                     }
                 </Stack.Navigator>

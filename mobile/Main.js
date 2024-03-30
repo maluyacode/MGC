@@ -1,14 +1,30 @@
 import { View, Text } from 'react-native'
-import React from 'react'
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import DrawerNavigator from './Navigators/DrawerNavigator';
 import TabNavigator from './Navigators/TabNavigator';
 import Header from './Shared/Header';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { INITIALIZE_CART } from './Redux/Constants/cartConstants';
+import SyncStorage from 'sync-storage'
 
 export default function Main() {
 
     const { userInfo } = useSelector(state => state.user);
+
+    const dispatch = useDispatch()
+
+    const initializeData = () => {
+        const cartItems = SyncStorage.get('cartItems');
+
+        dispatch({
+            type: INITIALIZE_CART,
+            payload: cartItems
+        })
+    }
+
+    useEffect(() => {
+        initializeData()
+    }, [])
 
     return (
         <>

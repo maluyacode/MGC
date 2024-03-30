@@ -18,7 +18,7 @@ export const addCart = (item) => (dispatch) => {
 
         return {
             success: true,
-            message: 'Item succesfully added'
+            message: `${item.product.name} Added Successfully`
         }
 
     } catch (err) {
@@ -35,6 +35,7 @@ export const removeCartItem = (productId) => (dispatch) => {
 
         const cartItems = SyncStorage.get('cartItems') || []
 
+        const item = cartItems.find(item => item.product._id === productId)
         SyncStorage.set('cartItems', cartItems.filter(item => item.product._id !== productId));
         const updatedCart = SyncStorage.get('cartItems');
 
@@ -42,6 +43,11 @@ export const removeCartItem = (productId) => (dispatch) => {
             type: cartAction.REMOVE_ITEM,
             payload: updatedCart
         })
+
+        return {
+            success: true,
+            message: `${item.product.name} Removed Successfully`
+        }
 
     } catch (err) {
         return {
@@ -72,5 +78,60 @@ export const clearCart = () => (dispatch) => {
             message: 'Cannot clear cart'
         }
     }
+
+}
+
+export const reduceQuantity = (productId) => (dispatch) => {
+
+    const cartItems = SyncStorage.get('cartItems') || []
+
+    if (cartItems.find(item => item.product._id === productId).quantity <= 1) {
+        return;
+    }
+
+    cartItems.find(item => item.product._id === productId).quantity--
+
+    dispatch({
+        type: cartAction.CHANGE_QUANTITY,
+        payload: cartItems
+    })
+}
+
+export const addQuantity = (productId) => (dispatch) => {
+
+    const cartItems = SyncStorage.get('cartItems') || []
+
+    cartItems.find(item => item.product._id === productId).quantity++
+
+    dispatch({
+        type: cartAction.CHANGE_QUANTITY,
+        payload: cartItems
+    })
+
+}
+
+export const changeColor = ({ productId, color }) => (dispatch) => {
+
+    const cartItems = SyncStorage.get('cartItems') || []
+
+    cartItems.find(item => item.product._id === productId).color = color
+
+    dispatch({
+        type: cartAction.INITIALIZE_CART,
+        payload: cartItems
+    })
+
+}
+
+export const changeSize = ({ productId, size }) => (dispatch) => {
+
+    const cartItems = SyncStorage.get('cartItems') || []
+
+    cartItems.find(item => item.product._id === productId).size = size
+
+    dispatch({
+        type: cartAction.INITIALIZE_CART,
+        payload: cartItems
+    })
 
 }

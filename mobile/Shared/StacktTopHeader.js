@@ -4,6 +4,7 @@ import { Box } from 'native-base';
 import React from 'react'
 import { Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { Badge } from 'react-native-elements';
+import { Entypo } from '@expo/vector-icons';
 
 export default StacktTopHeader = ({ navigation, route, headTitle }) => {
 
@@ -11,7 +12,8 @@ export default StacktTopHeader = ({ navigation, route, headTitle }) => {
         <Box safeArea style={styles.topView}>
             <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10 }}>
                 <Pressable onPress={() => navigation.goBack()}>
-                    <MaterialCommunityIcons name={'backburger'} size={25} />
+                    {/* <MaterialCommunityIcons name={'backburger'} size={25} /> */}
+                    <Entypo name="back" size={25} color="gray" />
                 </Pressable>
                 <Text style={styles.logoText}>{headTitle || route.params.name}</Text>
             </View>
