@@ -6,6 +6,7 @@ import TabNavigator from './Navigators/TabNavigator';
 import Header from './Shared/Header';
 import { INITIALIZE_CART } from './Redux/Constants/cartConstants';
 import SyncStorage from 'sync-storage'
+import { Button } from 'native-base';
 
 export default function Main() {
 
@@ -14,7 +15,9 @@ export default function Main() {
     const dispatch = useDispatch()
 
     const initializeData = () => {
-        const cartItems = SyncStorage.get('cartItems');
+        const cartItems = SyncStorage.get('cartItems') || [];
+
+        // console.log(cartItems)
 
         dispatch({
             type: INITIALIZE_CART,

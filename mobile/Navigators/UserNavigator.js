@@ -63,7 +63,7 @@ const UserNavigator = ({ navigation, route }) => {
                                 }}
                             />
 
-                            <Stack.Screen
+                            {/* <Stack.Screen
                                 name='CartNavigators'
                                 component={CartNavigators}
                                 options={{
@@ -73,7 +73,7 @@ const UserNavigator = ({ navigation, route }) => {
                                     //     <Header headTitle={'Profile'} />
                                     // ),
                                 }}
-                            />
+                            /> */}
                         </>
 
                     }

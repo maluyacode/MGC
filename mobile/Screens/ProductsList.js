@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 
 const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
 
-export default function TrendProducts({ items }) {
+export default function ProductsList({ items }) {
 
     const navigation = useNavigation()
 

@@ -46,24 +46,29 @@ export default styles = StyleSheet.create({
         marginHorizontal: 10
     },
     selectedImage: {
-        width: 300,
-        height: 300,
+        width: '100%',
+        height: 250,
         borderColor: '#67729D',
         borderWidth: 5,
+        objectFit: 'contain'
     },
     topContainer: {
         display: 'flex',
-        flexDirection: 'row',
-        gap: 10
+        flexDirection: 'column',
+        gap: 10,
     },
     imagesContainer: {
-        height: 300,
+        // height: 200,
+        width: '100%',
         gap: 10,
-        display: 'flex'
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center'
     },
     images: {
-        width: 140,
-        height: 140,
+        width: 100,
+        marginHorizontal: 3,
+        height: 100,
         borderColor: '#67729D',
         borderWidth: 2,
         marginBottom: 10

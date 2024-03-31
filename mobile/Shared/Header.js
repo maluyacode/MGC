@@ -4,12 +4,17 @@ import { Box } from 'native-base';
 import React from 'react'
 import { Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { Badge } from 'react-native-elements';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { TOGGLE_TAB } from '../Redux/Constants/uiConstants';
 
 const Header = ({ headTitle }) => {
 
     const { cartItems } = useSelector(state => state.cart);
     const navigation = useNavigation()
+    const dispatch = useDispatch()
+    const { isTabShow } = useSelector(state => state.userInterface)
+
+    console.log(isTabShow)
 
     return (
         <Box safeArea style={styles.topView}>
@@ -23,12 +28,21 @@ const Header = ({ headTitle }) => {
                 <TouchableOpacity>
                     <FontAwesome name='search' size={25} color={'#67729D'} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('CartNavigators')}>
+                <TouchableOpacity onPress={() => {
+                    dispatch({
+                        type: TOGGLE_TAB,
+                        payload: false
+                    })
+                    navigation.navigate('Cart')
+                }}>
                     <FontAwesome name='shopping-cart' size={25} color={'#67729D'} />
-                    <Badge status='error'
-                        value={cartItems?.length}
-                        containerStyle={{ position: 'absolute', top: -4, right: -4 }}
-                    />
+                    {cartItems.length > 0 ?
+                        < Badge status='error'
+                            value={cartItems?.length}
+                            containerStyle={{ position: 'absolute', top: -4, right: -4 }}
+                        />
+                        :
+                        ""}
                 </TouchableOpacity>
             </View>
         </Box>

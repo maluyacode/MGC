@@ -12,10 +12,10 @@ const StarRating = ({ rating }) => {
     return (
         <View style={{ width: 'auto', display: 'flex', flexDirection: 'row' }}>
             {[...Array(filledStars)].map((_, index) => (
-                <AntDesign name={'star'} color={'yellow'} size={20} />
+                <AntDesign key={index} name={'star'} color={'yellow'} size={20} />
             ))}
             {[...Array(remainingStars)].map((_, index) => (
-                <AntDesign name={'staro'} color={'yellow'} size={20} />
+                <AntDesign key={index} name={'staro'} color={'yellow'} size={20} />
             ))}
         </View>
     )

@@ -1,5 +1,5 @@
 import { View, Text, Image, StyleSheet, TouchableHighlight, TouchableOpacity, TouchableNativeFeedback } from 'react-native'
-import React, { useRef, useState } from 'react'
+import React, { Fragment, useRef, useState } from 'react'
 import Container from '../../Shared/Container';
 import { Box, Button, FlatList, FormControl, Icon, Input, Modal, ScrollView } from 'native-base';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -122,7 +122,7 @@ export default function ProductDetails({ route }) {
                 </Modal.Content>
             </Modal>
 
-            <Container style={{ padding: 15, backgroundColor: '#fff' }}>
+            <Container style={{ paddingHorizontal: 15, backgroundColor: '#fff' }}>
 
                 <ProductTopInfos selectedSize={selectedSize} product={product} />
 
@@ -132,7 +132,7 @@ export default function ProductDetails({ route }) {
                         <View style={[styles.flexRow, styles.colorsContainer]}>
                             {product?.colors.map((color, i) => {
                                 return (
-                                    <>{selectedColor._id === color._id ?
+                                    <Fragment key={i}>{selectedColor._id === color._id ?
 
                                         <TouchableOpacity onPress={() => toggleColor(color)}>
                                             <AntDesign name="checkcircle" size={30} color={`rgb(${color.rgb})`} />
@@ -145,7 +145,7 @@ export default function ProductDetails({ route }) {
                                             }]}></View>
                                         </TouchableOpacity>
 
-                                    }</>
+                                    }</Fragment>
                                 )
                             })}
                         </View>
@@ -157,7 +157,7 @@ export default function ProductDetails({ route }) {
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                         <View style={[styles.flexRow, styles.colorsContainer]}>
                             {product?.sizes.map((size, i) => (
-                                <>
+                                <Fragment key={i}>
                                     {selectedSize !== size ?
                                         <TouchableNativeFeedback onPress={() => toggleSize(size)}>
                                             <View style={[styles.notSelectedSize, styles.flexRow]}>
@@ -171,7 +171,7 @@ export default function ProductDetails({ route }) {
                                             </View>
                                         </TouchableNativeFeedback>
                                     }
-                                </>
+                                </Fragment>
                             ))}
                         </View>
                     </ScrollView>
@@ -181,10 +181,10 @@ export default function ProductDetails({ route }) {
                     <Button>
                         <AntDesign name={'hearto'} size={20} />
                     </Button>
-                    {cartItems.find(item => item.product._id === product._id) ?
+                    {cartItems?.find(item => item.product._id === product._id) ?
 
                         <Button style={{ width: '87%' }} onPress={() => console.log('GOTO CART')}>
-                            <Text onPress={() => navigation.navigate('CartNavigators')}> Go to Cart</Text>
+                            <Text onPress={() => navigation.navigate('Cart')}> Go to Cart</Text>
                         </Button> :
 
                         <Button style={{ width: '87%' }} onPress={() => {

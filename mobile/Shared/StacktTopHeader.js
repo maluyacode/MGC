@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     logoText: {
-        fontSize: 25,
+        fontSize: 20,
         fontWeight: '500',
         color: '#67729D'
     }

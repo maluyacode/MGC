@@ -1,7 +1,7 @@
 import React from 'react'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 
 import UserNavigator from './UserNavigator'
 import Home from '../Screens/Home'
@@ -10,15 +10,18 @@ import Order from '../Screens/Order/Order'
 import HomeNavigator from './HomeNavigator'
 
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
+import CustomTabBar from '../Shared/CustomTabBar'
+import CartNavigators from './CartNavigators'
 
 const Tab = createMaterialTopTabNavigator();
 
+
 const TabNavigator = ({ navigation, route }) => {
-    
 
     return (
         <>
             <Tab.Navigator
+                tabBar={props => <CustomTabBar {...props} />}
                 initialRouteName='HomeScreen'
                 screenOptions={{
                     tabBarShowLabel: false,
@@ -35,6 +38,7 @@ const TabNavigator = ({ navigation, route }) => {
                     name='HomeScreen'
                     component={HomeNavigator}
                     options={{
+                        title: 'Home',
                         tabBarIcon: ({ color }) => {
                             return <Icon
                                 name='home'
@@ -67,7 +71,7 @@ const TabNavigator = ({ navigation, route }) => {
                     name='User'
                     component={UserNavigator}
                     options={{
-                        // tabBarStyle: { display: "none" },
+                        tabBarStyle: { display: "none" },
                         tabBarShowLabel: false,
                         swipeEnabled: false,
                         animationEnabled: false,
@@ -80,7 +84,28 @@ const TabNavigator = ({ navigation, route }) => {
                             />
                         },
                     }}
-                    // initialParams={{ screen: 'Profile' }}
+                // initialParams={{ screen: 'Profile' }}
+                />
+
+                <Tab.Screen
+                    name='Cart'
+                    component={CartNavigators}
+                    tabBar={props => <Text />}
+                    options={{
+                        tabBarStyle: { display: 'none' },
+                        tabBarShowLabel: false,
+                        swipeEnabled: false,
+                        // animationEnabled: true,
+                        tabBarIcon: ({ color }) => {
+                            return <Icon
+                                name='user'
+                                style={{ position: 'relative' }}
+                                color={color}
+                                size={25}
+                            />
+                        },
+                    }}
+                    initialParams={{ screen: 'CartScreen' }}
                 />
 
             </Tab.Navigator>

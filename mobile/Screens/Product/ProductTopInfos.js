@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { Fragment, useState } from 'react'
 import styles from './ProductDetails.Styles'
 import { Image, ScrollView } from 'native-base'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
@@ -7,18 +7,22 @@ import { totalItemPrice } from '../../utils/computations'
 
 export default function ProductTopInfos({ product, selectedSize }) {
 
+    const [selectedImage, setSelectedImage] = useState(product?.images[0]?.url);
+
     return (
         <>
-            <View style={styles.topContainer}>
+            <View style={[styles.topContainer, { paddingTop: 15 }]}>
                 <Image alt='image' style={styles.selectedImage}
-                    source={{ uri: product?.images[0]?.url }}
+                    source={{ uri: selectedImage }}
                 />
                 <View style={styles.imagesContainer}>
-                    <ScrollView >
+                    <ScrollView horizontal={true}>
                         {product?.images.map((image, i) => (
-                            <TouchableOpacity key={i}>
-                                <Image alt='image' style={styles.images} source={{ uri: image?.url }} />
-                            </TouchableOpacity>
+                            <Fragment key={i}>
+                                <TouchableOpacity onPress={() => setSelectedImage(image?.url)}>
+                                    <Image alt='image' style={styles.images} source={{ uri: image?.url }} />
+                                </TouchableOpacity>
+                            </Fragment>
                         ))}
                     </ScrollView>
                 </View>

@@ -4,10 +4,12 @@ import { userReducer } from './Reducers/userReducer';
 import { getToken, getUser } from '../utils/user'
 import { cartReducer } from './Reducers/cartReducer';
 import SyncStorage from 'sync-storage'
+import { uiReducer } from './Reducers/uiReducer';
 
 const reducers = combineReducers({
     user: userReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    userInterface: uiReducer,
 });
 
 let initialState = {
@@ -17,6 +19,9 @@ let initialState = {
     },
     cart: {
         cartItems: SyncStorage.get('cartItems') || []
+    },
+    userInterface: {
+        isTabShow: true,
     }
 }
 

@@ -8,7 +8,9 @@ const statusBarHeight = StatusBar.currentHeight || 0;
 const Container = ({ children, style, ...props }) => {
     return (
         <SafeAreaView style={[styles.container, style]} >
-            <ScrollView nestedScrollEnabled={true} showsVerticalScrollIndicator={false}>
+            <ScrollView
+                nestedScrollEnabled={true}
+                showsVerticalScrollIndicator={false}>
                 <View>
                     {children}
                 </View>
