@@ -14,9 +14,11 @@ app.use("/public/uploads", express.static(__dirname + "/public/uploads"));
 const userRoutes = require('./routes/userRoutes');
 const categoryRoutes = require('./routes/categoryRoutes');
 const productRoutes = require('./routes/productRoutes');
+const orderRoutes = require('./routes/orderRoutes');
 
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/category', categoryRoutes);
 app.use('/api/v1/product', productRoutes);
+app.use('/api/v1/order', orderRoutes);
 
 module.exports = app;

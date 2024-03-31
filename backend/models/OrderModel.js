@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+const Populate = require("mongoose-autopopulate");
+const mongooseDelete = require("mongoose-delete");
 
 const orderSchema = new mongoose.Schema({
     shippingInfo: {
@@ -26,7 +28,8 @@ const orderSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: 'User'
+        ref: 'User',
+        autopopulate: true,
     },
     orderItems: [
         {
@@ -48,16 +51,21 @@ const orderSchema = new mongoose.Schema({
             product: {
                 type: mongoose.Schema.Types.ObjectId,
                 required: true,
-                ref: 'Product'
+                ref: 'Product',
+                autopopulate: true,
             }
         }
     ],
+    paymentMethod: {
+        type: String,
+        required: true,
+    },
     totalPrice: {
         type: Number,
         required: true,
         default: 0.0
     },
-    orderStatus: {  
+    orderStatus: {
         type: String,
         required: true,
         default: 'Processing' // Processing, Confirmed, Shipped, Delivered
@@ -66,5 +74,8 @@ const orderSchema = new mongoose.Schema({
         type: Date
     },
 }, { timestamps: true })
+
+orderSchema.plugin(mongooseDelete, { overrideMethods: 'all' })
+orderSchema.plugin(Populate);
 
 module.exports = mongoose.model('Order', orderSchema)
