@@ -47,8 +47,6 @@ exports.notifyUserEmailMessage = async (order) => {
     });
 
     return `
-Subject: Order Confirmation
-
 Dear ${order.user.name},
 
 We are pleased to inform you that your order has been confirmed. Thank you for shopping with us!
@@ -81,8 +79,6 @@ exports.notifyShippedMessage = async (order) => {
     });
 
     return `
-Subject: Order Shipment Notification
-
 Dear ${order.user.name},
 
 We are excited to inform you that your order has been shipped! Your package is now on its way to you.
@@ -99,8 +95,6 @@ MGC`
 exports.notifyDeliveredMessage = async (order) => {
 
     return `
-Subject: Package Arrival Notification
-
 Dear ${order.user.name},
 
 We are excited to inform you that your package has arrived at the shipping address provided:

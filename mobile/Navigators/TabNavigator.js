@@ -12,6 +12,9 @@ import HomeNavigator from './HomeNavigator'
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import CustomTabBar from '../Shared/CustomTabBar'
 import CartNavigators from './CartNavigators'
+import Reviews from '../Screens/Reviews/Reviews'
+import ReviewNavigators from './ReviewNavigators'
+import OrderNavigators from './OrderNavigators'
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -51,14 +54,28 @@ const TabNavigator = ({ navigation, route }) => {
                 // initialParams={{ screen: 'Home' }}
                 />
 
-
                 <Tab.Screen
-                    name='Order'
-                    component={Order}
+                    name='Reviews'
+                    component={ReviewNavigators}
                     options={{
                         tabBarIcon: ({ color }) => {
                             return <Icon
-                                name='heart'
+                                name={'package'}
+                                style={{ position: 'relative' }}
+                                color={color}
+                                size={24}
+                            />
+                        },
+                    }}
+                />
+
+                <Tab.Screen
+                    name='Order'
+                    component={OrderNavigators}
+                    options={{
+                        tabBarIcon: ({ color }) => {
+                            return <Icon
+                                name={'package'}
                                 style={{ position: 'relative' }}
                                 color={color}
                                 size={24}

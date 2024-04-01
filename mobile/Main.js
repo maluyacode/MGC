@@ -20,7 +20,6 @@ export default function Main() {
         const cartItems = SyncStorage.get('cartItems') || [];
         const user = SyncStorage.get('user') || null;
         const token = SyncStorage.get('token') || null;
-
         dispatch({
             type: INITIALIZE_CART,
             payload: cartItems

@@ -54,6 +54,29 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: ''
     },
+    toReview: [{
+        quantity: {
+            type: Number,
+            required: true
+        },
+        color: {
+            name: {
+                type: String,
+            },
+            rgb: {
+                type: Array,
+            }
+        },
+        size: {
+            type: String
+        },
+        product: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: 'Product',
+            autopopulate: true,
+        }
+    }],
     resetPasswordToken: String,
     resetPasswordExpire: Date,
 }, { timestamps: true })

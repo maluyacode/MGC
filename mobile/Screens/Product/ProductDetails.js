@@ -132,7 +132,7 @@ export default function ProductDetails({ route }) {
                         <View style={[styles.flexRow, styles.colorsContainer]}>
                             {product?.colors.map((color, i) => {
                                 return (
-                                    <Fragment key={i}>{selectedColor._id === color._id ?
+                                    <Fragment key={i + color.name}>{selectedColor._id === color._id ?
 
                                         <TouchableOpacity onPress={() => toggleColor(color)}>
                                             <AntDesign name="checkcircle" size={30} color={`rgb(${color.rgb})`} />
@@ -157,7 +157,7 @@ export default function ProductDetails({ route }) {
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                         <View style={[styles.flexRow, styles.colorsContainer]}>
                             {product?.sizes.map((size, i) => (
-                                <Fragment key={i}>
+                                <Fragment key={i + size}>
                                     {selectedSize !== size ?
                                         <TouchableNativeFeedback onPress={() => toggleSize(size)}>
                                             <View style={[styles.notSelectedSize, styles.flexRow]}>

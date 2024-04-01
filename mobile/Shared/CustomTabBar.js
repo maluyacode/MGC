@@ -95,11 +95,11 @@ const GetIcon = ({ name, isFocused }) => {
         case 'HomeScreen':
             return <MaterialCommunityIcons style={{ color: isFocused ? '#67729D' : '#BB9CC0' }} size={30} name={'home'} />
         case 'Order':
-            return <MaterialCommunityIcons style={{ color: isFocused ? '#67729D' : '#BB9CC0' }} size={27} name={'heart'} />
+            return <MaterialCommunityIcons style={{ color: isFocused ? '#67729D' : '#BB9CC0' }} size={27} name={'package'} />
         case 'Products':
             return <MaterialCommunityIcons name={'tshirt-v'} />
-        case 'Categories':
-            return <MaterialCommunityIcons name={'vector-difference'} />
+        case 'Reviews':
+            return <MaterialCommunityIcons name={'star'} style={{ color: isFocused ? '#67729D' : '#BB9CC0' }} size={27} />
         case 'User':
             return <FontAwesome style={{ color: isFocused ? '#67729D' : '#BB9CC0' }} name={'user'} size={27} />
         default:

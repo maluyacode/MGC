@@ -1,6 +1,15 @@
 const User = require('../models/UserModel');
 const sendToken = require('../routes/jwtToken');
 
+const errorHandler = ({ error, response, status = 500 }) => {
+
+    return response.status(status).json({
+        success: false,
+        message: error?.response?.data?.message || 'System error, please try again later'
+    })
+
+}
+
 exports.register = async (req, res, next) => {
 
     try {
@@ -61,6 +70,42 @@ exports.login = async (req, res, next) => {
             message: 'Please try again later',
             success: false,
         })
+    }
+
+}
+
+exports.user = async (req, res, next) => {
+
+    try {
+
+        const user = await User.findById(req.params.id)
+
+        return res.status(200).json({
+            success: true,
+            user: user,
+        })
+
+    } catch (err) {
+        console.log(err)
+        errorHandler({ error: err, response: res })
+    }
+
+}
+
+exports.users = async (req, res, next) => {
+
+    try {
+
+        const users = await User.find()
+
+        return res.status(200).json({
+            success: true,
+            users: users,
+        })
+
+    } catch (err) {
+        console.log(err)
+        errorHandler({ error: err, response: res })
     }
 
 }

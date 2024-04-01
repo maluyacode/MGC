@@ -1,5 +1,6 @@
 const Order = require('../models/OrderModel');
 const ProductModel = require('../models/ProductModel');
+const UserModel = require('../models/UserModel');
 const ImageFile = require('../utils/ImageFile');
 const { notifyAdminEmailMessage, notifyUserEmailMessage, notifyShippedMessage, notifyDeliveredMessage } = require('../utils/emailStringTemplate');
 const sendEmail = require('../utils/sendEmail');
@@ -125,6 +126,10 @@ const delivered = async ({ order, res }) => {
         email: 'adlawandavemerc98@gmail.com',
         subject: 'Package Arrival Notification!'
     })
+
+    const user = await UserModel.findById(order.user._id);
+    user.toReview = order.orderItems;
+    user.save();
 
     return res.status(200).json({
         success: true,

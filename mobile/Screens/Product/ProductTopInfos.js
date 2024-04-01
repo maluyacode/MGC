@@ -18,7 +18,7 @@ export default function ProductTopInfos({ product, selectedSize }) {
                 <View style={styles.imagesContainer}>
                     <ScrollView horizontal={true}>
                         {product?.images.map((image, i) => (
-                            <Fragment key={i}>
+                            <Fragment key={i + "asd"}>
                                 <TouchableOpacity onPress={() => setSelectedImage(image?.url)}>
                                     <Image alt='image' style={styles.images} source={{ uri: image?.url }} />
                                 </TouchableOpacity>
