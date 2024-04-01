@@ -165,6 +165,7 @@ export default DrawerNavigator = () => {
             <Drawer.Navigator
                 drawerContent={(props) => <CustomDrawerContent {...props} />}
                 screenOptions={{
+                    swipeEnabled: false,
                     drawerActiveBackgroundColor: '#FED9ED',
                     drawerActiveTintColor: '#fff',
                     headerTitleStyle: { marginLeft: -10 },

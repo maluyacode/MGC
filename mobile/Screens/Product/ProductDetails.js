@@ -210,7 +210,7 @@ export default function ProductDetails({ route }) {
                         <Text>{product?.description}</Text>
                     </View>
                     :
-                    <ProductReviews product={product} />
+                    <ProductReviews key={selectedIndex} product={product} />
                 }
 
             </Container >

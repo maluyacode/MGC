@@ -13,6 +13,7 @@ import store from './Redux/store';
 import Main from './Main';
 import SyncStorage from 'sync-storage';
 import { useEffect } from 'react';
+import 'react-native-svg'
 
 const theme = extendTheme({
   colors:

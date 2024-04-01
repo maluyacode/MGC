@@ -37,9 +37,42 @@ exports.create = async (req, res, next) => {
 
 }
 
+async function calculateAverageRating(reviews) {
+    const totalRatings = reviews.length;
+    const sumRatings = reviews.reduce((acc, review) => acc + review.rating, 0);
+    const averageRating = totalRatings > 0 ? sumRatings / totalRatings : 0;
+    return averageRating;
+}
+
 exports.review = async (req, res, next) => {
 
     try {
+
+
+
+    } catch (err) {
+        console.log(err)
+        errorHandler({ error: err, response: res })
+    }
+
+}
+
+exports.reviewsOfProduct = async (req, res, next) => {
+
+    try {
+
+        const reviews = await Review.find({
+            product: req.params.id,
+        }).populate('user').populate('product');
+
+        const rating = await calculateAverageRating(reviews);
+
+        return res.status(200).json({
+            success: true,
+            reviews: reviews,
+            rating: rating,
+            totalReviews: reviews.length
+        })
 
 
     } catch (err) {

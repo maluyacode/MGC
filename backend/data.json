@@ -1,0 +1,857 @@
+"reviews": [
+    {
+        "_id": "660a750331484dc15ab0efc3",
+        "product": {
+            "_id": "66042000f27c2d4b3b9195ec",
+            "name": "Blue Denim Slim Fit Jeans",
+            "description": "Special Uneconomic sa pogi lang ata maganda lang",
+            "price": 550,
+            "stock": 190,
+            "colors": [
+                {
+                    "name": "darkred",
+                    "rgb": [
+                        139,
+                        0,
+                        0
+                    ],
+                    "_id": "66056f167578077296422cf4"
+                },
+                {
+                    "name": "indianred",
+                    "rgb": [
+                        205,
+                        92,
+                        92
+                    ],
+                    "_id": "66056f167578077296422cf5"
+                },
+                {
+                    "name": "mediumvioletred",
+                    "rgb": [
+                        199,
+                        21,
+                        133
+                    ],
+                    "_id": "66056f167578077296422cf6"
+                },
+                {
+                    "name": "orangered",
+                    "rgb": [
+                        255,
+                        69,
+                        0
+                    ],
+                    "_id": "66056f167578077296422cf7"
+                },
+                {
+                    "name": "palevioletred",
+                    "rgb": [
+                        219,
+                        112,
+                        147
+                    ],
+                    "_id": "66056f167578077296422cf8"
+                },
+                {
+                    "name": "red",
+                    "rgb": [
+                        255,
+                        0,
+                        0
+                    ],
+                    "_id": "66056f167578077296422cf9"
+                }
+            ],
+            "sizes": [
+                "L",
+                "S",
+                "XS",
+                "XXL",
+                "XL",
+                "M"
+            ],
+            "images": [
+                {
+                    "public_id": "public/uploads/46ac94b5-6412-4229-93a3-f9a9b6b0d267.png-1711692632678.png",
+                    "url": "http://192.168.1.100:4000/public/uploads/46ac94b5-6412-4229-93a3-f9a9b6b0d267.png-1711692632678.png",
+                    "name": "46ac94b5-6412-4229-93a3-f9a9b6b0d267.png-1711692632678.png",
+                    "_id": "66065b584c2dc65d1f9e8182"
+                },
+                {
+                    "public_id": "public/uploads/50f17d1b-d249-4195-b71c-029b9b90702b.png-1711692632682.png",
+                    "url": "http://192.168.1.100:4000/public/uploads/50f17d1b-d249-4195-b71c-029b9b90702b.png-1711692632682.png",
+                    "name": "50f17d1b-d249-4195-b71c-029b9b90702b.png-1711692632682.png",
+                    "_id": "66065b584c2dc65d1f9e8183"
+                },
+                {
+                    "public_id": "public/uploads/7e6d9ae4-032f-4e60-bdf7-302e0847db89.png-1711692632683.png",
+                    "url": "http://192.168.1.100:4000/public/uploads/7e6d9ae4-032f-4e60-bdf7-302e0847db89.png-1711692632683.png",
+                    "name": "7e6d9ae4-032f-4e60-bdf7-302e0847db89.png-1711692632683.png",
+                    "_id": "66065b584c2dc65d1f9e8184"
+                }
+            ],
+            "brand": "Shein Nike",
+            "category": {
+                "deleted": false,
+                "_id": "65ff096d6dc70023f9b6b2d3",
+                "name": "Child Shirts",
+                "description": "Cool for girls and the boys kids",
+                "images": [
+                    {
+                        "public_id": "public/uploads/0cfda38f-1622-44a8-941c-c4d55b3c6cf7.png-1711384301318.png",
+                        "url": "http://192.168.1.101:4000/public/uploads/0cfda38f-1622-44a8-941c-c4d55b3c6cf7.png-1711384301318.png",
+                        "name": "0cfda38f-1622-44a8-941c-c4d55b3c6cf7.png-1711384301318.png",
+                        "_id": "6601a6ed7aac1cfbf42803ea"
+                    },
+                    {
+                        "public_id": "public/uploads/7344ca91-8cfa-4911-b952-0c48f864b10b.png-1711384301674.png",
+                        "url": "http://192.168.1.101:4000/public/uploads/7344ca91-8cfa-4911-b952-0c48f864b10b.png-1711384301674.png",
+                        "name": "7344ca91-8cfa-4911-b952-0c48f864b10b.png-1711384301674.png",
+                        "_id": "6601a6ed7aac1cfbf42803eb"
+                    }
+                ],
+                "createdAt": "2024-03-23T16:55:09.610Z",
+                "updatedAt": "2024-03-25T16:32:01.615Z",
+                "__v": 0
+            },
+            "reviews": [],
+            "deleted": false,
+            "createdAt": "2024-03-27T13:32:48.870Z",
+            "updatedAt": "2024-04-01T03:07:27.927Z",
+            "__v": 0
+        },
+        "user": {
+            "_id": "65facfa07b05d54887e57f98",
+            "name": "Aira Nicole Amodia",
+            "email": "amodia@gmail.com",
+            "image": "http://192.168.1.103:4000/public/uploads/6f4e7efc-83b2-4d05-9890-f51393daa82d.jpeg-1710935967169.jpeg",
+            "isAdmin": false,
+            "street": "",
+            "apartment": "",
+            "zip": "",
+            "city": "",
+            "country": "",
+            "createdAt": "2024-03-20T11:59:28.421Z",
+            "updatedAt": "2024-04-01T10:07:40.713Z",
+            "__v": 7,
+            "toReview": []
+        },
+        "rating": 4,
+        "comment": "All goods siya",
+        "deleted": false,
+        "createdAt": "2024-04-01T08:49:07.260Z",
+        "updatedAt": "2024-04-01T08:49:07.260Z",
+        "__v": 0
+    },
+    {
+        "_id": "660a752431484dc15ab0eff6",
+        "product": {
+            "_id": "660537328d1abce72e26fa49",
+            "name": "Gray Wool Blend Peacoat",
+            "description": "asdasdasd",
+            "price": 122,
+            "stock": 117,
+            "colors": [
+                {
+                    "name": "antiquewhite",
+                    "rgb": [
+                        250,
+                        235,
+                        215
+                    ],
+                    "_id": "660537328d1abce72e26fa4a"
+                },
+                {
+                    "name": "aqua",
+                    "rgb": [
+                        0,
+                        255,
+                        255
+                    ],
+                    "_id": "660537328d1abce72e26fa4b"
+                }
+            ],
+            "sizes": [
+                "M",
+                "S"
+            ],
+            "images": [
+                {
+                    "public_id": "public/uploads/acacacda-f4fd-4dba-bbe2-d3ff6f205b1e.png-1711631795890.png",
+                    "url": "http://192.168.1.100:4000/public/uploads/acacacda-f4fd-4dba-bbe2-d3ff6f205b1e.png-1711631795890.png",
+                    "name": "acacacda-f4fd-4dba-bbe2-d3ff6f205b1e.png-1711631795890.png",
+                    "_id": "66056db37578077296422b2d"
+                },
+                {
+                    "public_id": "public/uploads/da73c5e4-74ae-4182-a97a-d3fbf377dfb0.png-1711631795892.png",
+                    "url": "http://192.168.1.100:4000/public/uploads/da73c5e4-74ae-4182-a97a-d3fbf377dfb0.png-1711631795892.png",
+                    "name": "da73c5e4-74ae-4182-a97a-d3fbf377dfb0.png-1711631795892.png",
+                    "_id": "66056db37578077296422b2e"
+                }
+            ],
+            "brand": "SHein",
+            "category": {
+                "deleted": false,
+                "_id": "65ff0a366dc70023f9b6b2d5",
+                "name": "Pants",
+                "description": "Good for two people and all gender",
+                "images": [
+                    {
+                        "public_id": "public/uploads/7737da81-6fc2-4168-beb6-57f94155db0e.jpg-1711385120960.jpeg",
+                        "url": "http://192.168.1.101:4000/public/uploads/7737da81-6fc2-4168-beb6-57f94155db0e.jpg-1711385120960.jpeg",
+                        "name": "7737da81-6fc2-4168-beb6-57f94155db0e.jpg-1711385120960.jpeg",
+                        "_id": "6601aa218b92b8156453adcb"
+                    }
+                ],
+                "createdAt": "2024-03-23T16:58:30.201Z",
+                "updatedAt": "2024-03-25T16:45:21.630Z",
+                "__v": 0
+            },
+            "reviews": [],
+            "deleted": false,
+            "createdAt": "2024-03-28T09:24:02.136Z",
+            "updatedAt": "2024-04-01T03:07:27.949Z",
+            "__v": 0
+        },
+        "user": {
+            "_id": "65facfa07b05d54887e57f98",
+            "name": "Aira Nicole Amodia",
+            "email": "amodia@gmail.com",
+            "image": "http://192.168.1.103:4000/public/uploads/6f4e7efc-83b2-4d05-9890-f51393daa82d.jpeg-1710935967169.jpeg",
+            "isAdmin": false,
+            "street": "",
+            "apartment": "",
+            "zip": "",
+            "city": "",
+            "country": "",
+            "createdAt": "2024-03-20T11:59:28.421Z",
+            "updatedAt": "2024-04-01T10:07:40.713Z",
+            "__v": 7,
+            "toReview": []
+        },
+        "rating": 3,
+        "comment": "Maganda siya oks na rin",
+        "deleted": false,
+        "createdAt": "2024-04-01T08:49:40.100Z",
+        "updatedAt": "2024-04-01T08:49:40.100Z",
+        "__v": 0
+    },
+    {
+        "_id": "660a7d9f48996c267e7d4bf8",
+        "product": {
+            "_id": "660537fa8d1abce72e26faa7",
+            "name": "Sekreto ng mga gwapo",
+            "description": "asdadasd",
+            "price": 200,
+            "stock": 233,
+            "colors": [
+                {
+                    "name": "black",
+                    "rgb": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "_id": "660537fa8d1abce72e26faa8"
+                }
+            ],
+            "sizes": [
+                "S",
+                "M"
+            ],
+            "images": [
+                {
+                    "public_id": "public/uploads/37fc6807-a921-45cf-b6c0-540173699b28.png-1711618042532.png",
+                    "url": "http://192.168.1.100:4000/public/uploads/37fc6807-a921-45cf-b6c0-540173699b28.png-1711618042532.png",
+                    "name": "37fc6807-a921-45cf-b6c0-540173699b28.png-1711618042532.png",
+                    "_id": "660537fa8d1abce72e26faa9"
+                },
+                {
+                    "public_id": "public/uploads/8a57acec-b0ae-4b55-85d9-f914ef1a1303.png-1711618042539.png",
+                    "url": "http://192.168.1.100:4000/public/uploads/8a57acec-b0ae-4b55-85d9-f914ef1a1303.png-1711618042539.png",
+                    "name": "8a57acec-b0ae-4b55-85d9-f914ef1a1303.png-1711618042539.png",
+                    "_id": "660537fa8d1abce72e26faaa"
+                }
+            ],
+            "brand": "Nike",
+            "category": {
+                "deleted": false,
+                "_id": "660108aa782c1fc81e13fabf",
+                "name": "Skirts",
+                "description": "Skirts are garments worn by women that hang from the waist and drape down to varying lengths, ranging from mini to maxi. They come in different styles, including A-line, pencil, pleated, and wrap skirts, offering versatility for different body shapes and fashion preferences. Skirts can be paired with tops, blouses, or sweaters to create stylish and feminine outfits for both casual and formal settings.",
+                "images": [
+                    {
+                        "0": "h",
+                        "1": "t",
+                        "2": "t",
+                        "3": "p",
+                        "4": "s",
+                        "5": ":",
+                        "6": "/",
+                        "7": "/",
+                        "8": "v",
+                        "9": "i",
+                        "10": "a",
+                        "11": ".",
+                        "12": "p",
+                        "13": "l",
+                        "14": "a",
+                        "15": "c",
+                        "16": "e",
+                        "17": "h",
+                        "18": "o",
+                        "19": "l",
+                        "20": "d",
+                        "21": "e",
+                        "22": "r",
+                        "23": ".",
+                        "24": "c",
+                        "25": "o",
+                        "26": "m",
+                        "27": "/",
+                        "28": "3",
+                        "29": "0",
+                        "30": "0",
+                        "_id": "660a9eae2144c4e9c8fbb29f"
+                    },
+                    {
+                        "0": "h",
+                        "1": "t",
+                        "2": "t",
+                        "3": "p",
+                        "4": "s",
+                        "5": ":",
+                        "6": "/",
+                        "7": "/",
+                        "8": "v",
+                        "9": "i",
+                        "10": "a",
+                        "11": ".",
+                        "12": "p",
+                        "13": "l",
+                        "14": "a",
+                        "15": "c",
+                        "16": "e",
+                        "17": "h",
+                        "18": "o",
+                        "19": "l",
+                        "20": "d",
+                        "21": "e",
+                        "22": "r",
+                        "23": ".",
+                        "24": "c",
+                        "25": "o",
+                        "26": "m",
+                        "27": "/",
+                        "28": "3",
+                        "29": "0",
+                        "30": "0",
+                        "_id": "660a9eae2144c4e9c8fbb2a0"
+                    }
+                ]
+            },
+            "reviews": [],
+            "deleted": false,
+            "createdAt": "2024-03-28T09:27:22.566Z",
+            "updatedAt": "2024-04-01T09:24:38.159Z",
+            "__v": 0
+        },
+        "user": {
+            "_id": "65fbae527f73bf43b44fbf22",
+            "name": "dan",
+            "email": "dan@gmail.com",
+            "image": "http://192.168.1.100:4000/public/uploads/f72c4cac-9453-4313-8b13-3cbd4055e95d.png-1710992978857.png",
+            "isAdmin": false,
+            "street": "",
+            "apartment": "",
+            "zip": "",
+            "city": "",
+            "country": "",
+            "createdAt": "2024-03-21T03:49:38.918Z",
+            "updatedAt": "2024-04-01T09:26:02.490Z",
+            "__v": 3,
+            "toReview": []
+        },
+        "rating": 2,
+        "comment": "Pang pogi lang eh dos ka saken hahaha",
+        "deleted": false,
+        "createdAt": "2024-04-01T09:25:51.082Z",
+        "updatedAt": "2024-04-01T09:26:44.712Z",
+        "__v": 0
+    },
+    {
+        "_id": "660a7daa48996c267e7d4c21",
+        "product": {
+            "_id": "66050dd27bbac287a9cc948a",
+            "name": "Black Leather Biker Jacket",
+            "description": "Maganda to di nabaho sa paa",
+            "price": 550,
+            "stock": 95,
+            "colors": [
+                {
+                    "name": "aliceblue",
+                    "rgb": [
+                        240,
+                        248,
+                        255
+                    ],
+                    "_id": "66050dd27bbac287a9cc948b"
+                },
+                {
+                    "name": "antiquewhite",
+                    "rgb": [
+                        250,
+                        235,
+                        215
+                    ],
+                    "_id": "66050dd27bbac287a9cc948c"
+                },
+                {
+                    "name": "chartreuse",
+                    "rgb": [
+                        127,
+                        255,
+                        0
+                    ],
+                    "_id": "66050dd27bbac287a9cc948d"
+                }
+            ],
+            "sizes": [
+                "L",
+                "XL"
+            ],
+            "images": [
+                {
+                    "public_id": "public/uploads/c2fc30ad-fc27-4be9-a52e-213ae8d4574d.png-1711607250551.png",
+                    "url": "http://192.168.1.100:4000/public/uploads/c2fc30ad-fc27-4be9-a52e-213ae8d4574d.png-1711607250551.png",
+                    "name": "c2fc30ad-fc27-4be9-a52e-213ae8d4574d.png-1711607250551.png",
+                    "_id": "66050dd27bbac287a9cc948e"
+                },
+                {
+                    "public_id": "public/uploads/efcb62ad-7947-4cbe-a2de-dcbb0417b9a1.png-1711607250556.png",
+                    "url": "http://192.168.1.100:4000/public/uploads/efcb62ad-7947-4cbe-a2de-dcbb0417b9a1.png-1711607250556.png",
+                    "name": "efcb62ad-7947-4cbe-a2de-dcbb0417b9a1.png-1711607250556.png",
+                    "_id": "66050dd27bbac287a9cc948f"
+                }
+            ],
+            "brand": "Toyoto",
+            "category": {
+                "deleted": false,
+                "_id": "660108aa782c1fc81e13fabe",
+                "name": "Sneakers",
+                "description": "Sneakers are athletic shoes primarily designed for sports and physical activities but have evolved into a fashionable footwear option for everyday wear. They feature rubber soles for comfort and traction, with various designs ranging from low-top to high-top styles. Sneakers come in a wide array of colors, materials, and brands, offering both performance and style for any occasion.",
+                "images": [
+                    {
+                        "0": "h",
+                        "1": "t",
+                        "2": "t",
+                        "3": "p",
+                        "4": "s",
+                        "5": ":",
+                        "6": "/",
+                        "7": "/",
+                        "8": "v",
+                        "9": "i",
+                        "10": "a",
+                        "11": ".",
+                        "12": "p",
+                        "13": "l",
+                        "14": "a",
+                        "15": "c",
+                        "16": "e",
+                        "17": "h",
+                        "18": "o",
+                        "19": "l",
+                        "20": "d",
+                        "21": "e",
+                        "22": "r",
+                        "23": ".",
+                        "24": "c",
+                        "25": "o",
+                        "26": "m",
+                        "27": "/",
+                        "28": "3",
+                        "29": "0",
+                        "30": "0",
+                        "_id": "660a9eae2144c4e9c8fbb29d"
+                    },
+                    {
+                        "0": "h",
+                        "1": "t",
+                        "2": "t",
+                        "3": "p",
+                        "4": "s",
+                        "5": ":",
+                        "6": "/",
+                        "7": "/",
+                        "8": "v",
+                        "9": "i",
+                        "10": "a",
+                        "11": ".",
+                        "12": "p",
+                        "13": "l",
+                        "14": "a",
+                        "15": "c",
+                        "16": "e",
+                        "17": "h",
+                        "18": "o",
+                        "19": "l",
+                        "20": "d",
+                        "21": "e",
+                        "22": "r",
+                        "23": ".",
+                        "24": "c",
+                        "25": "o",
+                        "26": "m",
+                        "27": "/",
+                        "28": "3",
+                        "29": "0",
+                        "30": "0",
+                        "_id": "660a9eae2144c4e9c8fbb29e"
+                    }
+                ]
+            },
+            "reviews": [],
+            "deleted": false,
+            "createdAt": "2024-03-28T06:27:30.601Z",
+            "updatedAt": "2024-04-01T09:30:25.636Z",
+            "__v": 0
+        },
+        "user": {
+            "_id": "65fbae527f73bf43b44fbf22",
+            "name": "dan",
+            "email": "dan@gmail.com",
+            "image": "http://192.168.1.100:4000/public/uploads/f72c4cac-9453-4313-8b13-3cbd4055e95d.png-1710992978857.png",
+            "isAdmin": false,
+            "street": "",
+            "apartment": "",
+            "zip": "",
+            "city": "",
+            "country": "",
+            "createdAt": "2024-03-21T03:49:38.918Z",
+            "updatedAt": "2024-04-01T09:26:02.490Z",
+            "__v": 3,
+            "toReview": []
+        },
+        "rating": 5,
+        "comment": "Maganda siya!!!!",
+        "deleted": false,
+        "createdAt": "2024-04-01T09:26:02.469Z",
+        "updatedAt": "2024-04-01T09:26:24.522Z",
+        "__v": 0
+    },
+    {
+        "_id": "660a7ef548996c267e7d502d",
+        "product": {
+            "_id": "66050dd27bbac287a9cc948a",
+            "name": "Black Leather Biker Jacket",
+            "description": "Maganda to di nabaho sa paa",
+            "price": 550,
+            "stock": 95,
+            "colors": [
+                {
+                    "name": "aliceblue",
+                    "rgb": [
+                        240,
+                        248,
+                        255
+                    ],
+                    "_id": "66050dd27bbac287a9cc948b"
+                },
+                {
+                    "name": "antiquewhite",
+                    "rgb": [
+                        250,
+                        235,
+                        215
+                    ],
+                    "_id": "66050dd27bbac287a9cc948c"
+                },
+                {
+                    "name": "chartreuse",
+                    "rgb": [
+                        127,
+                        255,
+                        0
+                    ],
+                    "_id": "66050dd27bbac287a9cc948d"
+                }
+            ],
+            "sizes": [
+                "L",
+                "XL"
+            ],
+            "images": [
+                {
+                    "public_id": "public/uploads/c2fc30ad-fc27-4be9-a52e-213ae8d4574d.png-1711607250551.png",
+                    "url": "http://192.168.1.100:4000/public/uploads/c2fc30ad-fc27-4be9-a52e-213ae8d4574d.png-1711607250551.png",
+                    "name": "c2fc30ad-fc27-4be9-a52e-213ae8d4574d.png-1711607250551.png",
+                    "_id": "66050dd27bbac287a9cc948e"
+                },
+                {
+                    "public_id": "public/uploads/efcb62ad-7947-4cbe-a2de-dcbb0417b9a1.png-1711607250556.png",
+                    "url": "http://192.168.1.100:4000/public/uploads/efcb62ad-7947-4cbe-a2de-dcbb0417b9a1.png-1711607250556.png",
+                    "name": "efcb62ad-7947-4cbe-a2de-dcbb0417b9a1.png-1711607250556.png",
+                    "_id": "66050dd27bbac287a9cc948f"
+                }
+            ],
+            "brand": "Toyoto",
+            "category": {
+                "deleted": false,
+                "_id": "660108aa782c1fc81e13fabe",
+                "name": "Sneakers",
+                "description": "Sneakers are athletic shoes primarily designed for sports and physical activities but have evolved into a fashionable footwear option for everyday wear. They feature rubber soles for comfort and traction, with various designs ranging from low-top to high-top styles. Sneakers come in a wide array of colors, materials, and brands, offering both performance and style for any occasion.",
+                "images": [
+                    {
+                        "0": "h",
+                        "1": "t",
+                        "2": "t",
+                        "3": "p",
+                        "4": "s",
+                        "5": ":",
+                        "6": "/",
+                        "7": "/",
+                        "8": "v",
+                        "9": "i",
+                        "10": "a",
+                        "11": ".",
+                        "12": "p",
+                        "13": "l",
+                        "14": "a",
+                        "15": "c",
+                        "16": "e",
+                        "17": "h",
+                        "18": "o",
+                        "19": "l",
+                        "20": "d",
+                        "21": "e",
+                        "22": "r",
+                        "23": ".",
+                        "24": "c",
+                        "25": "o",
+                        "26": "m",
+                        "27": "/",
+                        "28": "3",
+                        "29": "0",
+                        "30": "0",
+                        "_id": "660a9eae2144c4e9c8fbb29d"
+                    },
+                    {
+                        "0": "h",
+                        "1": "t",
+                        "2": "t",
+                        "3": "p",
+                        "4": "s",
+                        "5": ":",
+                        "6": "/",
+                        "7": "/",
+                        "8": "v",
+                        "9": "i",
+                        "10": "a",
+                        "11": ".",
+                        "12": "p",
+                        "13": "l",
+                        "14": "a",
+                        "15": "c",
+                        "16": "e",
+                        "17": "h",
+                        "18": "o",
+                        "19": "l",
+                        "20": "d",
+                        "21": "e",
+                        "22": "r",
+                        "23": ".",
+                        "24": "c",
+                        "25": "o",
+                        "26": "m",
+                        "27": "/",
+                        "28": "3",
+                        "29": "0",
+                        "30": "0",
+                        "_id": "660a9eae2144c4e9c8fbb29e"
+                    }
+                ]
+            },
+            "reviews": [],
+            "deleted": false,
+            "createdAt": "2024-03-28T06:27:30.601Z",
+            "updatedAt": "2024-04-01T09:30:25.636Z",
+            "__v": 0
+        },
+        "user": {
+            "_id": "65facfa07b05d54887e57f98",
+            "name": "Aira Nicole Amodia",
+            "email": "amodia@gmail.com",
+            "image": "http://192.168.1.103:4000/public/uploads/6f4e7efc-83b2-4d05-9890-f51393daa82d.jpeg-1710935967169.jpeg",
+            "isAdmin": false,
+            "street": "",
+            "apartment": "",
+            "zip": "",
+            "city": "",
+            "country": "",
+            "createdAt": "2024-03-20T11:59:28.421Z",
+            "updatedAt": "2024-04-01T10:07:40.713Z",
+            "__v": 7,
+            "toReview": []
+        },
+        "rating": 3,
+        "comment": "Okay lang iba kulay dumating saken omay",
+        "deleted": false,
+        "createdAt": "2024-04-01T09:31:33.710Z",
+        "updatedAt": "2024-04-01T09:31:33.710Z",
+        "__v": 0
+    },
+    {
+        "_id": "660a876cdadf1055b3e308d0",
+        "product": {
+            "_id": "6609bad66d68bf9ac47f59c5",
+            "name": "Sapatos",
+            "description": "Trkakannsnss",
+            "price": 200,
+            "stock": 44,
+            "colors": [
+                {
+                    "name": "darkred",
+                    "rgb": [
+                        139,
+                        0,
+                        0
+                    ],
+                    "_id": "6609bad66d68bf9ac47f59c6"
+                },
+                {
+                    "name": "indianred",
+                    "rgb": [
+                        205,
+                        92,
+                        92
+                    ],
+                    "_id": "6609bad66d68bf9ac47f59c7"
+                }
+            ],
+            "sizes": [
+                "L",
+                "M"
+            ],
+            "images": [
+                {
+                    "public_id": "public/uploads/42f3b6ea-22d9-46ba-80f1-23780062e2b2.jpg-1711913683252.jpeg",
+                    "url": "http://192.168.1.100:4000/public/uploads/42f3b6ea-22d9-46ba-80f1-23780062e2b2.jpg-1711913683252.jpeg",
+                    "name": "42f3b6ea-22d9-46ba-80f1-23780062e2b2.jpg-1711913683252.jpeg",
+                    "_id": "6609bad66d68bf9ac47f59c8"
+                },
+                {
+                    "public_id": "public/uploads/b1e95931-3cc5-4203-9575-6debd6cf20df.jpg-1711913685849.jpeg",
+                    "url": "http://192.168.1.100:4000/public/uploads/b1e95931-3cc5-4203-9575-6debd6cf20df.jpg-1711913685849.jpeg",
+                    "name": "b1e95931-3cc5-4203-9575-6debd6cf20df.jpg-1711913685849.jpeg",
+                    "_id": "6609bad66d68bf9ac47f59c9"
+                }
+            ],
+            "brand": "Nike",
+            "category": {
+                "deleted": false,
+                "_id": "660108aa782c1fc81e13fabe",
+                "name": "Sneakers",
+                "description": "Sneakers are athletic shoes primarily designed for sports and physical activities but have evolved into a fashionable footwear option for everyday wear. They feature rubber soles for comfort and traction, with various designs ranging from low-top to high-top styles. Sneakers come in a wide array of colors, materials, and brands, offering both performance and style for any occasion.",
+                "images": [
+                    {
+                        "0": "h",
+                        "1": "t",
+                        "2": "t",
+                        "3": "p",
+                        "4": "s",
+                        "5": ":",
+                        "6": "/",
+                        "7": "/",
+                        "8": "v",
+                        "9": "i",
+                        "10": "a",
+                        "11": ".",
+                        "12": "p",
+                        "13": "l",
+                        "14": "a",
+                        "15": "c",
+                        "16": "e",
+                        "17": "h",
+                        "18": "o",
+                        "19": "l",
+                        "20": "d",
+                        "21": "e",
+                        "22": "r",
+                        "23": ".",
+                        "24": "c",
+                        "25": "o",
+                        "26": "m",
+                        "27": "/",
+                        "28": "3",
+                        "29": "0",
+                        "30": "0",
+                        "_id": "660a9eae2144c4e9c8fbb29d"
+                    },
+                    {
+                        "0": "h",
+                        "1": "t",
+                        "2": "t",
+                        "3": "p",
+                        "4": "s",
+                        "5": ":",
+                        "6": "/",
+                        "7": "/",
+                        "8": "v",
+                        "9": "i",
+                        "10": "a",
+                        "11": ".",
+                        "12": "p",
+                        "13": "l",
+                        "14": "a",
+                        "15": "c",
+                        "16": "e",
+                        "17": "h",
+                        "18": "o",
+                        "19": "l",
+                        "20": "d",
+                        "21": "e",
+                        "22": "r",
+                        "23": ".",
+                        "24": "c",
+                        "25": "o",
+                        "26": "m",
+                        "27": "/",
+                        "28": "3",
+                        "29": "0",
+                        "30": "0",
+                        "_id": "660a9eae2144c4e9c8fbb29e"
+                    }
+                ]
+            },
+            "reviews": [],
+            "deleted": false,
+            "createdAt": "2024-03-31T19:34:46.640Z",
+            "updatedAt": "2024-04-01T10:06:03.668Z",
+            "__v": 0
+        },
+        "user": {
+            "_id": "65facfa07b05d54887e57f98",
+            "name": "Aira Nicole Amodia",
+            "email": "amodia@gmail.com",
+            "image": "http://192.168.1.103:4000/public/uploads/6f4e7efc-83b2-4d05-9890-f51393daa82d.jpeg-1710935967169.jpeg",
+            "isAdmin": false,
+            "street": "",
+            "apartment": "",
+            "zip": "",
+            "city": "",
+            "country": "",
+            "createdAt": "2024-03-20T11:59:28.421Z",
+            "updatedAt": "2024-04-01T10:07:40.713Z",
+            "__v": 7,
+            "toReview": []
+        },
+        "rating": 5,
+        "comment": "Grabe 10 years dumating",
+        "deleted": false,
+        "createdAt": "2024-04-01T10:07:40.694Z",
+        "updatedAt": "2024-04-01T10:07:40.694Z",
+        "__v": 0
+    }
+]

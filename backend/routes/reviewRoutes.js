@@ -17,4 +17,7 @@ router.delete('/:id/destroy', reviewController.destroy) // destroy / force delet
 
 router.put('/:id', upload.array('images'), reviewController.update) // update category
 
+router.get('/:id/product', isAuthenticated, reviewController.reviewsOfProduct);
+
+
 module.exports = router;
