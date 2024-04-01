@@ -82,8 +82,8 @@ export default function OrderSummary({ route }) {
                     <ScrollView showsVerticalScrollIndicator={false}>
                         <Image style={styles.imageInfo} source={{ uri: imgInfo }} />
                         <Text style={[styles.title, { fontWeight: 900 }]}>Order Summary</Text>
-                        {cartItems?.map(item => (
-                            <View style={[styles.cardContainer, { marginBottom: 20 }]}>
+                        {cartItems?.map((item, i) => (
+                            <View key={i + item?.product?._id} style={[styles.cardContainer, { marginBottom: 20 }]}>
                                 <Image style={styles.cardMedia} source={{ uri: sampleImg }} />
                                 <View style={styles.cardBody}>
                                     <Text style={[styles.productName, { fontWeight: 600 }]}>{item.product.name}</Text>

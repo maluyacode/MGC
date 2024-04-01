@@ -7,6 +7,7 @@ import Header from './Shared/Header';
 import { INITIALIZE_CART } from './Redux/Constants/cartConstants';
 import SyncStorage from 'sync-storage'
 import { Button } from 'native-base';
+import { USER_LOGIN_SUCCESS } from './Redux/Constants/userContstants';
 
 export default function Main() {
 
@@ -15,14 +16,24 @@ export default function Main() {
     const dispatch = useDispatch()
 
     const initializeData = () => {
+        
         const cartItems = SyncStorage.get('cartItems') || [];
-
-        // console.log(cartItems)
+        const user = SyncStorage.get('user') || null;
+        const token = SyncStorage.get('token') || null;
 
         dispatch({
             type: INITIALIZE_CART,
             payload: cartItems
         })
+
+        dispatch({
+            type: USER_LOGIN_SUCCESS,
+            payload: {
+                user,
+                token
+            }
+        })
+
     }
 
     useEffect(() => {
