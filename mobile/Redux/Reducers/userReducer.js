@@ -32,6 +32,11 @@ export const userReducer = (state = {}, action) => {
                 success: true,
                 successMessage: action.payload.message,
             }
+        case "UPDATE_ME":
+            return {
+                ...state,
+                userInfo: action.payload.user,
+            }
         case userAction.USER_LOGOUT_SUCCESS:
             return {
                 ...state,

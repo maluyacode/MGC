@@ -142,6 +142,7 @@ exports.users = async (req, res, next) => {
 
 exports.update = async (req, res, next) => {
 
+    
     try {
 
         if (req.file) {
@@ -154,7 +155,7 @@ exports.update = async (req, res, next) => {
         }
 
         const user = await User.findByIdAndUpdate(req.params.id, req.body);
-
+        console.log(user)
         return res.status(200).json({
             success: true,
             user: user,

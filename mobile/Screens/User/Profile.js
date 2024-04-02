@@ -13,6 +13,10 @@ import { Button } from "native-base";
 import { ButtonGroup } from "react-native-elements";
 import { AntDesign } from "@expo/vector-icons";
 import * as ImagePicker from 'expo-image-picker';
+import Mime from "mime";
+import axios from "axios";
+import ToastEmmitter from "../../Shared/ToastEmmitter";
+import baseURL from "../../assets/common/baseUrl";
 
 const buttons = ["My Reviews", "To Review"]
 
@@ -22,6 +26,7 @@ const Profile = ({ navigation }) => {
 
     const { token, userInfo } = useSelector(state => state.user);
     const [selectedIndex, setSelectedIndex] = useState(0);
+    const [id, setId] = useState(userInfo?._id)
 
     const [user, setUser] = useState({
         name: userInfo?.name || "",
@@ -29,6 +34,7 @@ const Profile = ({ navigation }) => {
         phone: userInfo?.phone || "",
         image: userInfo?.image || null
     });
+
 
     const [notEdit, setNotEdit] = useState(true);
     const [modalVisible, setModalVisible] = useState(false);
@@ -64,20 +70,90 @@ const Profile = ({ navigation }) => {
         }
     }
 
+    const getUser = async () => {
+        try {
+
+            const { data: { userInfo } } = await axios.get(`${baseURL}/users/${id}`, {
+                headers: {
+                    'Authorization': SyncStorage.get('token'),
+                    "Content-Type": 'multipart/form-data'
+                },
+            })
+
+            setUser({
+                name: userInfo.name,
+                email: userInfo.email,
+                phone: userInfo.phone,
+                image: userInfo.image,
+            })
+            setId(userInfo?._id)
+        } catch (err) {
+
+        }
+    }
+
     useFocusEffect(
         useCallback(() => {
-            setUser(userInfo)
+            getUser()
         }, [])
     )
-
-    console.log(user)
 
     const handleChange = (value, name) => {
         setUser({ ...user, [name]: value });
     }
 
+
+    const update = async (values) => {
+        try {
+
+            const { data } = await axios.put(`${baseURL}/users/${id}`, values, {
+                headers: {
+                    'Authorization': SyncStorage.get('token'),
+                    "Content-Type": 'multipart/form-data'
+                },
+            })
+
+            if (data.success) {
+                console.log(data.user)
+                ToastEmmitter.success(data.message);
+                // dispatch({
+                //     type: "UPDATE_ME",
+                //     data: data
+                // })
+            } else {
+                ToastEmmitter.error("Please try again later")
+            }
+        } catch (err) {
+            ToastEmmitter.error("Please try again later")
+            console.log(err)
+            // Alert.alert("Fetching Error", "Cannot fetch orders")
+        }
+    }
+
     const handleSubmit = () => {
-        console.log(user);
+        let values = { ...user, image: user.image };
+
+        const formData = new FormData();
+
+        if (user.image !== userInfo.image) {
+            const newImageUri = "file:///" + user.image.split("file:/").join("");
+            values.image = {
+                uri: newImageUri,
+                type: Mime.getType(newImageUri),
+                name: newImageUri.split("/").pop()
+            }
+
+        } else {
+            delete values.image;
+        }
+
+        Object.entries(values).forEach(([key, value]) => {
+            formData.append(key, value);
+        })
+
+        console.log(values)
+
+        update(values)
     }
 
     return (
