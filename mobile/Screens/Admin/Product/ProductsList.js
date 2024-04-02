@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, Dimensions, FlatList } from 'react-native'
 import React, { useCallback, useEffect, useState } from 'react'
 import { AddIcon, Box, Button, Image, Input, ScrollView, SearchIcon } from 'native-base'
 import { DataTable } from 'react-native-paper'
@@ -6,6 +6,8 @@ import { getProductsAPI, productDeleteAPI } from '../../../API/productAPI';
 import { useFocusEffect } from '@react-navigation/native';
 import ListItems from './ListItems';
 import ToastEmmitter from '../../../Shared/ToastEmmitter';
+
+const { height } = Dimensions.get('window');
 
 export default function ProductsList({ navigation }) {
 
@@ -66,7 +68,7 @@ export default function ProductsList({ navigation }) {
 
     return (
         <>
-            <View>
+            <View style={{ height: '90%' }}>
                 <Box style={{ display: 'flex', flexDirection: 'row', gap: 10, justifyContent: 'space-between', padding: 5, height: 45 }}>
                     <Input onChangeText={value => handleSearch(value)} width={'85%'} placeholder='Search' leftElement={
                         <View style={{ marginHorizontal: 10, marginRight: -5 }}>
@@ -78,7 +80,7 @@ export default function ProductsList({ navigation }) {
                         {/* <Text color={'gray.500'}>Add New</Text> */}
                     </Button>
                 </Box>
-                <DataTable style={{ marginTop: -10 }}>
+                <DataTable style={{ marginTop: -10, minHeight: '100%' }}>
                     <DataTable.Header>
                         <DataTable.Title>Image</DataTable.Title>
                         <DataTable.Title>Name</DataTable.Title>
@@ -86,20 +88,13 @@ export default function ProductsList({ navigation }) {
                         <DataTable.Title>Description</DataTable.Title>
                     </DataTable.Header>
                     <View style={{ maxHeight: '80%' }}>
-                        <ScrollView >
-                            {filteredItems?.slice(from, to).map((item, i) => (
-                                <ListItems item={item} key={i} deleteProduct={deleteProduct} />
-                                // <DataTable.Row key={i} style={{ paddingVertical: 5 }} onLongPress={() => console.log("Edit/Delete")} onPress={() => console.log('View')}>
-                                //     <DataTable.Cell>
-                                //         <Box>
-                                //             <Image source={{ uri: item?.images[0].url || null }} alt={'Not found'} width={50} height={50} />
-                                //         </Box>
-                                //     </DataTable.Cell>
-                                //     <DataTable.Cell>{item.name}</DataTable.Cell>
-                                //     <DataTable.Cell>{item.description}</DataTable.Cell>
-                                // </DataTable.Row>
-                            ))}
-                        </ScrollView>
+                        <FlatList
+                            data={filteredItems?.slice(from, to)}
+                            keyExtractor={(item, index) => index.toString()}
+                            renderItem={({ item, index }) => (
+                                <ListItems item={item} key={index} deleteUser={deleteProduct} />
+                            )}
+                        />
                     </View>
                     <DataTable.Pagination
                         page={page}

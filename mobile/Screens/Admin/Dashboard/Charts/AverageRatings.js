@@ -56,7 +56,7 @@ export default function AverageRatings() {
             }
         } catch (err) {
             console.log(err)
-            Alert.alert("Fetching Error", "Cannot fetch orders")
+            // Alert.alert("Fetching Error", "Cannot fetch orders")
         }
     }
 

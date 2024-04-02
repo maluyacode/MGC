@@ -31,7 +31,7 @@ export default function StarDistribution() {
 
         } catch (err) {
             console.log(err)
-            Alert.alert("Fetching Error", "Cannot fetch orders")
+            // Alert.alert("Fetching Error", "Cannot fetch orders")
         }
     }
 

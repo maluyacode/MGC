@@ -1,4 +1,4 @@
-import { View, Image } from 'react-native'
+import { View, Image, Dimensions } from 'react-native'
 import React, { useCallback, useEffect, useState } from 'react'
 // import Button from '../../../Shared/Form/Button'
 import { DataTable, } from 'react-native-paper';
@@ -70,7 +70,7 @@ export default function CategoriesList({ navigation }) {
 
     return (
         <>
-            <View>
+            <View style={{ height: '90%' }}>
                 <Box style={{ display: 'flex', flexDirection: 'row', gap: 10, justifyContent: 'space-between', padding: 5, height: 45 }}>
                     <Input onChangeText={value => handleSearch(value)} width={'85%'} placeholder='Search' leftElement={
                         <View style={{ marginHorizontal: 10, marginRight: -5 }}>
@@ -82,7 +82,7 @@ export default function CategoriesList({ navigation }) {
                         {/* <Text color={'gray.500'}>Add New</Text> */}
                     </Button>
                 </Box>
-                <DataTable style={{ marginTop: -10 }}>
+                <DataTable style={{ marginTop: -10, minHeight: '100%' }}>
                     <DataTable.Header>
                         <DataTable.Title>Image</DataTable.Title>
                         <DataTable.Title>Name</DataTable.Title>

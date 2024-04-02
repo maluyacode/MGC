@@ -70,8 +70,8 @@ export default function ProductTopInfos({ product, selectedSize }) {
                 <Text style={[styles.productName, { fontWeight: 600, }]}>{product.name}</Text>
                 <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                     <MaterialCommunityIcons name={'star'} color={'green'} size={17} />
-                    <Text>{Number.parseFloat(rating).toFixed(1)} - </Text>
-                    <Text style={{ color: '#111111', fontSize: 20 }}>{totalReviews}</Text>
+                    <Text style={{ color: '#111111', fontSize: 18 }}>{Number.parseFloat(rating).toFixed(1)} - </Text>
+                    <Text style={{ color: '#111111', fontSize: 18 }}>{totalReviews}</Text>
                 </View>
             </View>
 

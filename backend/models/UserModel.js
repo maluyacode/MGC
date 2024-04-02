@@ -3,6 +3,7 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
+const mongooseDelete = require("mongoose-delete");
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -115,5 +116,7 @@ userSchema.methods.getResetPasswordToken = async function () {
     this.resetPasswordExpire = Date.now() + 30 * 60 * 1000;
     return resetToken;
 }
+
+userSchema.plugin(mongooseDelete, { overrideMethods: 'all' })
 
 module.exports = mongoose.model('User', userSchema)

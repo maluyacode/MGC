@@ -5,7 +5,7 @@ import { Box, Button, CloseIcon, Image } from 'native-base'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
-export default function ListItems({ item, deleteProduct }) {
+export default function ListItems({ item, deleteUser }) {
 
     const navigation = useNavigation();
 
@@ -15,8 +15,8 @@ export default function ListItems({ item, deleteProduct }) {
         setShowAction(!showAction);
     }
 
-    const handleEdit = (id) => {
-        navigation.navigate('ProductUpdate', id);
+    const handleEdit = (user) => {
+        navigation.navigate('UserUpdate', user);
     }
 
     useFocusEffect(
@@ -24,7 +24,6 @@ export default function ListItems({ item, deleteProduct }) {
             setShowAction(false)
         }, [])
     )
-    console.log(item)
 
     return (
         <>
@@ -33,20 +32,20 @@ export default function ListItems({ item, deleteProduct }) {
                 onPress={!showAction ? () => console.log('View') : undefined}
             >
                 <View style={{ width: '100%', display: 'flex', flexDirection: 'row', opacity: showAction ? 0.3 : 1 }}>
-                    <DataTable.Cell>
+                    <DataTable.Cell style={{ padding: 0 }}>
                         <Box>
                             <Image alt={'No image'}
                                 source={{
                                     uri:
-                                        item?.images[0]?.url ||
+                                        item?.image ||
                                         'https://via.placeholder.com/300'
                                 }}
-                                width={50} height={50} />
+                                width={50} height={50} borderRadius={50} />
                         </Box>
-                    </DataTable.Cell>
-                    <DataTable.Cell>{item.name}</DataTable.Cell>
-                    <DataTable.Cell>{item.stock}pcs</DataTable.Cell>
-                    <DataTable.Cell>{item.description}</DataTable.Cell>
+                    </DataTable.Cell >
+                    <DataTable.Cell numberOfLines={1} ellipsizeMode='tail' >{item.name}</DataTable.Cell>
+                    <DataTable.Cell numeric>{item.email}pcs</DataTable.Cell>
+                    <DataTable.Cell numeric>{item.isAdmin ? 'Admin' : 'User'}</DataTable.Cell>
                 </View>
                 {showAction && (
                     <Box style={{
@@ -58,10 +57,10 @@ export default function ListItems({ item, deleteProduct }) {
                         alignItems: 'center',
                         opacity: 1
                     }}>
-                        <Button size={'xs'} p={2} onPress={() => handleEdit(item._id)}>
+                        <Button size={'xs'} p={2} onPress={() => handleEdit(item)}>
                             <MaterialCommunityIcons name={'file-edit'} size={18} />
                         </Button>
-                        <Button onPress={() => deleteProduct(item._id)} colorScheme={'danger'} size={'xs'} p={2}>
+                        <Button onPress={() => deleteUser(item._id)} colorScheme={'danger'} size={'xs'} p={2}>
                             <MaterialCommunityIcons name={'delete'} size={18} />
                         </Button>
                         <Button ml={'auto'} size={'xs'} p={2} colorScheme={'danger'} onPress={toggleAction}>

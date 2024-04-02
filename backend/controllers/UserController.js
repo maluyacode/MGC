@@ -1,5 +1,6 @@
 const User = require('../models/UserModel');
 const sendToken = require('../routes/jwtToken');
+const { uploadSingle } = require('../utils/ImageFile');
 
 const errorHandler = ({ error, response, status = 500 }) => {
 
@@ -35,6 +36,35 @@ exports.register = async (req, res, next) => {
             message: 'Please try again later',
             success: false,
         })
+    }
+}
+
+exports.create = async (req, res, next) => {
+
+    try {
+
+        console.log(req.body)
+
+        req.body.image = await uploadSingle({
+            imageFile: req.file,
+            request: req,
+        })
+
+        const user = await User.create(req.body)
+
+        if (!user) {
+            return res.status(400).send('the user cannot be created!')
+        }
+
+        return res.status(200).json({
+            success: true,
+            user: user,
+            message: 'User created successfully'
+        })
+
+    } catch (err) {
+        console.log(err)
+        errorHandler({ error: err, response: res })
     }
 }
 
@@ -101,6 +131,53 @@ exports.users = async (req, res, next) => {
         return res.status(200).json({
             success: true,
             users: users,
+        })
+
+    } catch (err) {
+        console.log(err)
+        errorHandler({ error: err, response: res })
+    }
+
+}
+
+exports.update = async (req, res, next) => {
+
+    try {
+
+        if (req.file) {
+            req.body.image = await uploadSingle({
+                imageFile: req.file,
+                request: req,
+            })
+        } else {
+            delete req.body?.image
+        }
+
+        const user = await User.findByIdAndUpdate(req.params.id, req.body);
+
+        return res.status(200).json({
+            success: true,
+            user: user,
+        })
+
+    } catch (err) {
+        console.log(err)
+        errorHandler({ error: err, response: res })
+    }
+
+}
+
+exports.delete = async (req, res, next) => {
+
+    try {
+
+        await User.delete({ _id: req.params.id }, (err, result) => {
+
+        });
+
+        return res.status(200).json({
+            success: true,
+            message: 'Product deleted successfully',
         })
 
     } catch (err) {

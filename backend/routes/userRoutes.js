@@ -13,4 +13,10 @@ router.get('/', isAuthenticated, userController.users)
 
 router.get('/:id', isAuthenticated, userController.user)
 
+router.post('/create', upload.single('image'), isAuthenticated, userController.create);
+
+router.put('/:id', upload.single('image'), isAuthenticated, userController.update);
+
+router.delete('/:id', isAuthenticated, userController.delete);
+
 module.exports = router;

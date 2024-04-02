@@ -17,11 +17,22 @@ const errorHandler = ({ error, response, status = 500 }) => {
 exports.orders = async (req, res, next) => {
 
     try {
+        
+        console.log(req.query.user)
 
-        console.log(req.query)
-        const orders = await Order.find({
-            orderStatus: req.query.status
-        });
+        const filterOption = {}
+
+        if (req.query.status) {
+            filterOption.orderStatus = req.query.status
+        }
+
+        if (req.query.user) {
+            filterOption.user = req.query.user
+        }
+
+        const orders = await Order.find(filterOption);
+
+        console.log(orders)
 
         return res.status(200).json({
             success: true,

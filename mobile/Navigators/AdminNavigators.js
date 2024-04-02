@@ -11,6 +11,8 @@ import CategoryUpdate from '../Screens/Admin/Category/CategoryUpdate';
 import ProductCreate from '../Screens/Admin/Product/ProductCreate';
 import ProductUpdate from '../Screens/Admin/Product/ProductUpdate';
 import OrderDetails from '../Screens/Admin/Order/OrderDetails';
+import UserUpdate from '../Screens/Admin/User/UserUpdate';
+import UserCreate from '../Screens/Admin/User/UserCreate';
 const Stack = createStackNavigator();
 
 export default function AdminNavigators() {
@@ -102,6 +104,28 @@ export default function AdminNavigators() {
                 component={UsersList}
                 options={{
                     headerShown: false
+                }}
+            />
+
+            <Stack.Screen
+                name='UserCreate'
+                component={UserCreate}
+                options={{
+                    title: 'Create',
+                    headerShown: true,
+                    headerStyle: { height: 40 },
+                    headerTitleStyle: { fontSize: 16, marginLeft: -15 },
+                }}
+            />
+
+            <Stack.Screen
+                name='UserUpdate'
+                component={UserUpdate}
+                options={{
+                    title: 'Update',
+                    headerShown: true,
+                    headerStyle: { height: 40 },
+                    headerTitleStyle: { fontSize: 16, marginLeft: -15 },
                 }}
             />
 

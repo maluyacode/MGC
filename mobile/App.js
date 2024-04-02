@@ -15,6 +15,7 @@ import SyncStorage from 'sync-storage';
 import { useEffect } from 'react';
 import 'react-native-svg'
 
+
 const theme = extendTheme({
   colors:
   {
@@ -48,6 +49,7 @@ export default function App() {
   useEffect(() => {
     asyncStorage()
   }, [])
+
 
   return (
     <>
