@@ -9,6 +9,6 @@ const sizePrices = {
 
 export const totalItemPrice = (quantity = 1, size, price) => {
 
-    return (quantity * price) + sizePrices[size.toLowerCase()]
+    return (quantity * price) + sizePrices[size?.toLowerCase()]
 
 }

@@ -10,7 +10,7 @@ import { DataTable } from 'react-native-paper';
 
 const { width } = Dimensions.get('window')
 
-const status = ['Pending', 'Confirmed', 'Shipped', 'Delivered']
+const status = ['Pending', 'Confirmed', 'Shipped', 'Delivered', "Cancelled"]
 
 export default function OrdersList() {
 
@@ -47,7 +47,8 @@ export default function OrdersList() {
     const handleSearch = (keyword) => {
 
         const regex = new RegExp(keyword, 'i');
-        const filteredItems = items.filter(item => regex.test(item.name)
+        const filteredItems = items.filter(item => regex.test(item.user.name) ||
+            regex.test(item.shippingInfo.address)
         );
         setFilteredItems(filteredItems);
 
@@ -84,7 +85,7 @@ export default function OrdersList() {
                     console.log(value)
                     setSelectedIndex(value);
                 }}
-
+                textStyle={{ fontSize: 12 }}
                 containerStyle={styles.buttonsStyle}
             />
             {filteredItems.length > 0 ?

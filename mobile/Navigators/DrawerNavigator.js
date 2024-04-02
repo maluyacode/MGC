@@ -30,6 +30,7 @@ import { logoutAction } from "../Redux/Actions/userActions";
 import AdminNavigators from "./AdminNavigators";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Image } from "react-native";
+import Reviews from "../Screens/Admin/Reviews.js/Reviews";
 global.__reanimatedWorkletInit = () => { };
 
 const Drawer = createDrawerNavigator();
@@ -211,6 +212,13 @@ export default DrawerNavigator = () => {
 
                 <Drawer.Screen name="Users" component={AdminNavigators}
                     initialParams={{ screen: 'UsersList' }}
+                />
+
+                <Drawer.Screen name="Reviews" component={Reviews}
+                    options={{
+                        title: 'Reviews'
+                    }}
+                // initialParams={{ screen: 'UsersList' }}
                 />
 
             </Drawer.Navigator>

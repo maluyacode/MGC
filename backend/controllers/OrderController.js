@@ -17,12 +17,13 @@ const errorHandler = ({ error, response, status = 500 }) => {
 exports.orders = async (req, res, next) => {
 
     try {
-        
+
         console.log(req.query.user)
 
         const filterOption = {}
 
         if (req.query.status) {
+            console.log(req.query.status)
             filterOption.orderStatus = req.query.status
         }
 
