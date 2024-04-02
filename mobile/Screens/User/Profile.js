@@ -1,7 +1,7 @@
 import "core-js/stable/atob";
 import React, { useCallback, useState } from 'react'
 import Container from '../../Shared/Container'
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Alert, Image, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 // import Jwt from 'jsonwebtoken'
 import { jwtDecode } from 'jwt-decode'
@@ -12,6 +12,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import { Button } from "native-base";
 import { ButtonGroup } from "react-native-elements";
 import { AntDesign } from "@expo/vector-icons";
+import * as ImagePicker from 'expo-image-picker';
 
 const buttons = ["My Reviews", "To Review"]
 
@@ -26,10 +27,42 @@ const Profile = ({ navigation }) => {
         name: userInfo?.name || "",
         email: userInfo?.email || "",
         phone: userInfo?.phone || "",
+        image: userInfo?.image || null
     });
 
     const [notEdit, setNotEdit] = useState(true);
+    const [modalVisible, setModalVisible] = useState(false);
 
+    const addPhoto = async (type) => {
+        setModalVisible(false)
+
+        let result;
+
+        const c = await ImagePicker.requestCameraPermissionsAsync();
+
+        if (c.status !== "granted") {
+            Alert.alert("", "We need your permission to proceed")
+            return;
+        }
+
+        if (type === 'uploadAPhoto') {
+            result = await ImagePicker.launchImageLibraryAsync({
+                allowsEditing: true,
+                quality: 1
+            })
+        } else {
+            result = await ImagePicker.launchCameraAsync({
+                allowsEditing: true,
+                quality: 1
+            })
+        }
+
+        if (!result.canceled) {
+            setUser({ ...user, image: result.assets[0].uri });
+        } else {
+            Alert.alert("", "You did not select any image")
+        }
+    }
 
     useFocusEffect(
         useCallback(() => {
@@ -49,7 +82,39 @@ const Profile = ({ navigation }) => {
 
     return (
         <Container style={styles.container}>
+
+            <Modal
+                animationType="fade"
+                visible={modalVisible}
+                transparent={true}
+                onRequestClose={() => setModalVisible(!modalVisible)}>
+                <View style={styles.centeredView}>
+                    <View style={styles.modalView}>
+                        <Pressable
+                            style={[styles.button, styles.buttonClose]}
+                            onPress={() => addPhoto('takeAPhoto')}>
+                            <Text style={styles.textStyle}>Take a photo</Text>
+                        </Pressable>
+                        <Pressable
+                            style={[styles.button, styles.buttonClose]}
+                            onPress={() => addPhoto('uploadAPhoto')}>
+                            <Text style={styles.textStyle}>Upload photo</Text>
+                        </Pressable>
+                        <Pressable
+                            style={[styles.button, styles.buttonClose]}
+                            onPress={() => setModalVisible(!modalVisible)}>
+                            <Text style={styles.textStyle}>Cancel</Text>
+                        </Pressable>
+                    </View>
+                </View>
+            </Modal>
+
             <View style={styles.form}>
+                <Image
+                    style={{ width: 200, height: 200, borderRadius: 100, marginLeft: 'auto', marginRight: 'auto' }}
+                    source={{ uri: user?.image }}
+                />
+                <Button colorScheme={'mycustom'} variant={'outline'} borderColor={'#67729D'} size={'sm'} onPress={() => setModalVisible(true)} >Upload</Button>
                 <TextInput contentStyle={{ color: '#3D3B40D1' }} style={[styles.disabledInput]} label="Name" dense={'40dp'}
                     disabled={notEdit}
                     value={user?.name}
@@ -121,6 +186,65 @@ const styles = StyleSheet.create({
     },
     container: {
         padding: 10,
+    },
+    modalView: {
+        margin: 20,
+        marginTop: '100%',
+        backgroundColor: '#E7BCDE',
+        borderRadius: 10,
+        padding: 35,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+    },
+    button: {
+        width: '100%',
+        padding: 10,
+        elevation: 2,
+        margin: 3,
+        borderRadius: 5,
+    },
+    buttonClose: {
+        backgroundColor: '#67729D',
+    },
+    textStyle: {
+        color: 'white',
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
+    imageContainer: {
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        borderStyle: 'solid',
+        borderWidth: 8,
+        width: 250,
+        height: 250,
+        borderRadius: 250,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        marginTop: 70,
+        borderColor: '#67729D'
+    },
+    pickImage: {
+        marginTop: 10,
+        width: '50%',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        backgroundColor: '#BB9CC0'
+    },
+    buttonContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        gap: 5,
+        justifyContent: 'space-evenly',
+        marginTop: 50
     }
 })
 
