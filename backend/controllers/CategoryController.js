@@ -2,7 +2,7 @@ const Category = require('../models/CategoryModel');
 const ImageFile = require('../utils/ImageFile');
 
 const errorHandler = ({ error, response }) => {
-
+    console.log(error)
     return response.status(500).json({
         success: false,
         message: error?.response?.data?.message || 'System error, please try again later'
@@ -13,6 +13,8 @@ const errorHandler = ({ error, response }) => {
 exports.create = async (req, res, next) => {
 
     try {
+
+        console.log(req.files)
 
         req.body.images = await ImageFile.uploadMultiple({
             imageFiles: req.files,

@@ -6,6 +6,7 @@ const app = require('./app');
 dotenv.config({ path: './config/.env' });
 
 connectDatabase();
+require('./config/cloudinary');
 
 const port = process.env.PORT || 8080;
 

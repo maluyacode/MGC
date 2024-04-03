@@ -13,7 +13,7 @@ router.get('/:id', reviewController.review) // get single
 
 router.delete('/:id', reviewController.delete) // soft delete
 
-router.delete('/:id/destroy', reviewController.destroy) // destroy / force delete
+router.delete('/:id/destroy', isAuthorized('admin'), reviewController.destroy) // destroy / force delete
 
 router.put('/:id', upload.array('images'), reviewController.update) // update category
 

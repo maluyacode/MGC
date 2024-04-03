@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "mobile",
-    "slug": "mgc",
+    "slug": "marquia",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -36,7 +36,7 @@
           "releaseChannel": "default",
           "distribution": "apk"
         },
-        "projectId": "752805f6-a745-4e3d-9e3f-bd68dc6fe7b2"
+        "projectId": "2126983f-da5d-49d8-b166-c2c51be54934"
       }
     },
     "owner": "davemerc"

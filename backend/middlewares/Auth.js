@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken")
 exports.isAuthenticated = async (req, res, next) => {
 
     const token = req.headers.authorization
+    console.log(token)
 
     if (!token) {
         return res.status(401).json({ message: 'Login first to access this resource' })
@@ -19,7 +20,7 @@ exports.isAuthenticated = async (req, res, next) => {
 exports.isAuthorized = (...roles) => {
 
     return (req, res, next) => {
-        if (!roles.includes(req.user.role)) {
+        if (!req.user.isAdmin) {
             return res.status(403).json({ message: `You are not allowed to acccess or do something on this resource` })
         }
         next()

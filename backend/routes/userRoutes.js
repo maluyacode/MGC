@@ -3,7 +3,7 @@ const router = express.Router();
 const upload = require('../utils/multer')
 
 const userController = require('../controllers/UserController');
-const { isAuthenticated } = require('../middlewares/Auth');
+const { isAuthenticated, isAuthorized } = require('../middlewares/Auth');
 
 router.post('/register', upload.single('image'), userController.register);
 
@@ -17,6 +17,6 @@ router.post('/create', upload.single('image'), isAuthenticated, userController.c
 
 router.put('/:id', upload.single('image'), isAuthenticated, userController.update);
 
-router.delete('/:id', isAuthenticated, userController.delete);
+router.delete('/:id', isAuthenticated, isAuthorized('admin'), userController.delete);
 
 module.exports = router;

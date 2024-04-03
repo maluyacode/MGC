@@ -82,7 +82,7 @@ const confirmed = async ({ order, res }) => {
 
     await sendEmail({
         message: message,
-        email: 'adlawandavemerc98@gmail.com',
+        email: order.user.email,
         subject: 'Order Confirmed!'
     })
 
@@ -115,7 +115,7 @@ const ship = async ({ order, res }) => {
 
     await sendEmail({
         message: message,
-        email: 'adlawandavemerc98@gmail.com',
+        email: order.user.email,
         subject: 'Order Shipment Notification'
     })
 
@@ -135,7 +135,7 @@ const delivered = async ({ order, res }) => {
 
     await sendEmail({
         message: message,
-        email: 'adlawandavemerc98@gmail.com',
+        email: order.user.email,
         subject: 'Package Arrival Notification!'
     })
 
