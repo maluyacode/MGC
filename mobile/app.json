@@ -23,13 +23,19 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.davemerc.mgc"
+      "package": "com.davemerc.mgc",
+      "publishBundlePath": "android/app/build/outputs/bundle/release/app.aab",
+      "publishManifestPath": "android/app/build/outputs/apk/release/app.json"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
+        "build": {
+          "releaseChannel": "default",
+          "distribution": "apk"
+        },
         "projectId": "752805f6-a745-4e3d-9e3f-bd68dc6fe7b2"
       }
     },
