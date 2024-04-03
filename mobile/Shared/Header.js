@@ -25,9 +25,9 @@ const Header = ({ headTitle }) => {
                 <Text style={styles.logoText}>{headTitle || 'MGC'}</Text>
             </View>
             <View style={{ display: 'flex', flexDirection: 'row', gap: 15 }}>
-                <TouchableOpacity>
+                {/* <TouchableOpacity>
                     <FontAwesome name='search' size={25} color={'#67729D'} />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
                 <TouchableOpacity onPress={() => {
                     dispatch({
                         type: TOGGLE_TAB,

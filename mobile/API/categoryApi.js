@@ -23,6 +23,7 @@ const setImages = async (images) => {
     return formattedImages
 }
 
+
 const setImage = async (image) => {
 
     const newImageUri = "file:///" + image.split("file:/").join("");
@@ -36,6 +37,14 @@ const setImage = async (image) => {
 }
 
 export const createCategory = async (values) => {
+    const config = {
+        headers: {
+            "Content-Type": "multipart/form-data",
+            'Authorization': SyncStorage.get('token')
+        }
+    }
+
+    console.log(SyncStorage.get('token'))
 
     try {
 
@@ -64,6 +73,13 @@ export const createCategory = async (values) => {
 
 export const getCategoriesAPI = async () => {
 
+    const config = {
+        headers: {
+            "Content-Type": "multipart/form-data",
+            'Authorization': SyncStorage.get('token')
+        }
+    }
+
     try {
 
         const response = await axios.get(`${baseURL}/category`, config)
@@ -78,6 +94,13 @@ export const getCategoriesAPI = async () => {
 
 export const getCategoryAPI = async (id) => {
 
+    const config = {
+        headers: {
+            "Content-Type": "multipart/form-data",
+            'Authorization': SyncStorage.get('token')
+        }
+    }
+
     try {
 
         const response = await axios.get(`${baseURL}/category/${id}`, config)
@@ -91,6 +114,14 @@ export const getCategoryAPI = async (id) => {
 }
 
 export const updateCategoryAPI = async ({ id, values }) => {
+
+    const config = {
+        headers: {
+            "Content-Type": "multipart/form-data",
+            'Authorization': SyncStorage.get('token')
+        }
+    }
+
     try {
 
         if (values.images) {
@@ -125,6 +156,12 @@ export const updateCategoryAPI = async ({ id, values }) => {
 
 export const deleteCategoryAPI = async ({ id = null, options = {} }) => {
 
+    const config = {
+        headers: {
+            "Content-Type": "multipart/form-data",
+            'Authorization': SyncStorage.get('token')
+        }
+    }
 
     try {
 

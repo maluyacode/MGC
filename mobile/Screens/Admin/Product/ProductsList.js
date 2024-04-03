@@ -92,7 +92,7 @@ export default function ProductsList({ navigation }) {
                             data={filteredItems?.slice(from, to)}
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={({ item, index }) => (
-                                <ListItems item={item} key={index} deleteUser={deleteProduct} />
+                                <ListItems item={item} key={index} deleteProduct={deleteProduct} />
                             )}
                         />
                     </View>

@@ -8,6 +8,7 @@ import { INITIALIZE_CART } from './Redux/Constants/cartConstants';
 import SyncStorage from 'sync-storage'
 import { Button } from 'native-base';
 import { USER_LOGIN_SUCCESS } from './Redux/Constants/userContstants';
+import Auth from './Middleware/Auth';
 
 export default function Main() {
 
@@ -16,7 +17,7 @@ export default function Main() {
     const dispatch = useDispatch()
 
     const initializeData = () => {
-        
+
         const cartItems = SyncStorage.get('cartItems') || [];
         const user = SyncStorage.get('user') || null;
         const token = SyncStorage.get('token') || null;
@@ -41,6 +42,7 @@ export default function Main() {
 
     return (
         <>
+            {/* <Auth> */}
             {userInfo?.isAdmin ?
                 <DrawerNavigator /> :
                 <>
@@ -48,6 +50,7 @@ export default function Main() {
                     <TabNavigator />
                 </>
             }
+            {/* </Auth> */}
         </>
     )
 }

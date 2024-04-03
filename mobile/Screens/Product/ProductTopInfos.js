@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, Alert } from 'react-native'
 import React, { Fragment, useCallback, useState } from 'react'
 import styles from './ProductDetails.Styles'
 import { Image, ScrollView } from 'native-base'
@@ -12,7 +12,6 @@ import { useFocusEffect } from '@react-navigation/native'
 export default function ProductTopInfos({ product, selectedSize }) {
 
     const [selectedImage, setSelectedImage] = useState(product?.images[0]?.url);
-
 
     const [rating, setRating] = useState(0);
     const [reviews, setReviews] = useState(0);

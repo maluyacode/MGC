@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, Alert } from 'react-native'
 import React, { Fragment, useCallback, useEffect, useState } from 'react'
 import { AntDesign } from '@expo/vector-icons';
 import { Avatar } from 'react-native-paper';

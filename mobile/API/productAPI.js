@@ -12,6 +12,12 @@ const config = {
 }
 
 export const productCreateAPI = async (values) => {
+    const config = {
+        headers: {
+            "Content-Type": "multipart/form-data",
+            'Authorization': SyncStorage.get('token')
+        }
+    }
     try {
 
         values.images = await setImages(values.images);
@@ -41,6 +47,12 @@ export const productCreateAPI = async (values) => {
 }
 
 export const getProductsAPI = async () => {
+    const config = {
+        headers: {
+            "Content-Type": "multipart/form-data",
+            'Authorization': SyncStorage.get('token')
+        }
+    }
 
     try {
 
@@ -55,6 +67,12 @@ export const getProductsAPI = async () => {
 }
 
 export const getProductAPI = async (id) => {
+    const config = {
+        headers: {
+            "Content-Type": "multipart/form-data",
+            'Authorization': SyncStorage.get('token')
+        }
+    }
 
     try {
 
@@ -69,6 +87,12 @@ export const getProductAPI = async (id) => {
 }
 
 export const productUpdateAPI = async ({ id, values }) => {
+    const config = {
+        headers: {
+            "Content-Type": "multipart/form-data",
+            'Authorization': SyncStorage.get('token')
+        }
+    }
     console.log(values)
     const formData = new FormData();
 
@@ -103,7 +127,12 @@ export const productUpdateAPI = async ({ id, values }) => {
 }
 
 export const productDeleteAPI = async ({ id }) => {
-
+    const config = {
+        headers: {
+            "Content-Type": "multipart/form-data",
+            'Authorization': SyncStorage.get('token')
+        }
+    }
     try {
 
         const response = await axios.delete(`${baseURL}/product/${id}`, config)
