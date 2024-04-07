@@ -1,13 +1,38 @@
 const User = require('../models/UserModel');
 const sendToken = require('../routes/jwtToken');
 const { uploadSingle } = require('../utils/ImageFile');
+const { decode } = require('jsonwebtoken')
 
 const errorHandler = ({ error, response, status = 500 }) => {
-
+    console.log(error)
     return response.status(status).json({
         success: false,
         message: error?.response?.data?.message || 'System error, please try again later'
     })
+
+}
+
+exports.googleSignIn = async (req, res, next) => {
+
+    try {
+
+        const googleUser = decode(req.body.idToken)
+
+        const user = await User.findOne({ email: googleUser.email })
+
+        if (user) {
+            return sendToken(user, 200, res, 'Success');
+        }
+
+        googleUser.image = googleUser.picture;
+
+        const newUser = await User.create(googleUser);
+
+        return sendToken(newUser, 200, res, 'Success');
+
+    } catch (err) {
+        errorHandler({ error: err, response: res })
+    }
 
 }
 
@@ -142,7 +167,7 @@ exports.users = async (req, res, next) => {
 
 exports.update = async (req, res, next) => {
 
-    
+
     try {
 
         if (req.file) {

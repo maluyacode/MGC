@@ -5,6 +5,8 @@ const upload = require('../utils/multer')
 const userController = require('../controllers/UserController');
 const { isAuthenticated, isAuthorized } = require('../middlewares/Auth');
 
+router.post('/google-singin', userController.googleSignIn);
+
 router.post('/register', upload.single('image'), userController.register);
 
 router.post('/login', userController.login)
